@@ -6,6 +6,7 @@ public abstract class Piece {
 
     private final char pieceSymbol;
     private final Direction[] moveDirections;
+    private int position; //TODO: Implement
 
     public Piece(char pieceSymbol, Direction[] moveDirections) {
         this.pieceSymbol = pieceSymbol;
