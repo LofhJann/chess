@@ -19,7 +19,7 @@ public enum Square {
     E8(116), F8(117), G8(118), H8(119);
 
 
-    private int intValue;
+    private final int intValue;
 
     Square(int intValue) {
         this.intValue = intValue;
