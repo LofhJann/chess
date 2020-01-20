@@ -1,5 +1,8 @@
 package chess.engine;
 
+/**
+ * Possible movements converted to locations of next square in that direction (current square + direction = target square)
+ */
 public enum Direction {
     EAST(1),
     WEST(-1),
