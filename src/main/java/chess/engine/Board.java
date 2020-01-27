@@ -28,7 +28,7 @@ public class Board {
      * Sets up board using given FEN String.
      *
      * @param fenString FEN formatted String of starting position.
-     * @see <a href="https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation">https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation</a>
+     * @see <a href="https://en.wikipedia.org/wiki/Forsyth-Edwards_Notation">https://en.wikipedia.org/wiki/Forsyth-Edwards_Notation</a>
      */
     public void setupBoardFromFEN(String fenString) {
         int boardIndex = 0;
