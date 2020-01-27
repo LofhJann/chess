@@ -13,7 +13,10 @@ import com.github.bhlangonijr.chesslib.move.*;
 import java.util.Random;
 
 import com.github.bhlangonijr.chesslib.*;
-    
+
+/**
+ * Example ChessBot playing random moves, not to be used
+ */
 public class TestBot implements ChessBot {
     private Random random; 
     private Board b;
