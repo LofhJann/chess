@@ -20,6 +20,8 @@ plugins {
     id 'jacoco'
 
     id 'checkstyle'
+
+    id 'org.sonarqube' version '2.7'
 }
 
 jacocoTestReport {
@@ -80,4 +82,11 @@ build.dependsOn javadoc
 task performanceTest(type:JavaExec) {
    classpath = sourceSets.main.runtimeClasspath
    main = 'datastructureproject.PerformanceTest'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "LofhJann_chess"
+        property "sonar.organization", "lofhjann"
+    }
 }
