@@ -24,4 +24,8 @@ public enum Square {
     Square(int intValue) {
         this.intValue = intValue;
     }
+
+    public int getIntValue() {
+        return intValue;
+    }
 }
