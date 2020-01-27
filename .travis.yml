@@ -1,3 +1,11 @@
 language: java
+
+addons:
+  sonarcloud:
+    organization: lofhjann
+    token:
+      secure: MO/xFqIQIq+zYe6qbHjYGNuOuvUEW4LEkLQ6ngpwFhJl+5ompu574XrrPTGMxkGjV0W/lsyVzMKGQAK3HQiQhXwcrcV0IqGg+wl432tYlcxVTJTQefIFC6eQtNlQXqXaenadvOoiLufmK1hVCCn06ljXH5H94yaoVrNhuBNMX823kkq0v2E5Vy3cUQCcUZaufFOuR+MtAivXR2wNGWUAaFlPo8W4lTtqhOr7xtYur7VKypvkSbH1h6jramZ0gqAXB155D7v0gV7ZeWKP1r4gMgkndLNUwCbcCzKxpGYzu+7vpEb1P66QKDtLd+jJ8QIHt7UI97d+Fi2srWo0Z/kVWlaGEtN2dviMPX9x18p30XohzQiZOcttp8y8JX56U0l4Y0UyajaNeLRTVdyGAVh1ZuNwDfsPVLjbo2r5eIvRJmFBTWSKhBX+B0OpwyCEvTYOyFxbHVUf30zra45Fb1a9vIqMqSDvelQAh5qnnVzGr35GqjnMVdFgZwm9jMs1N9puRhv0nOyqjVn4kJ9J79rjx16+WsTQHic3efLORWudcAvYwJpabwc2MaghG29PZY7IKAMs38Vytsh6iWi7LXDX/xbPoav6Av50hPED4UWepdO4mtnJn7RxynohaHkc1d3Xu5cQ6rL1mhyxC6IclDs1eW75lXzxmxVHR+dt+NQI434=
+script:
+  - sonar-scanner
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
