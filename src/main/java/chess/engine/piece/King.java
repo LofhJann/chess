@@ -11,7 +11,8 @@ public class King extends Piece {
                 Direction.SOUTHEAST,
                 Direction.SOUTHWEST,
                 Direction.NORTHWEST,
-                Direction.NORTHEAST});
+                Direction.NORTHEAST
+        });
     }
 
     @Override

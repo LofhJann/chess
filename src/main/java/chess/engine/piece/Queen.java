@@ -12,6 +12,7 @@ public class Queen extends Piece {
                 Direction.SOUTHEAST,
                 Direction.SOUTHWEST,
                 Direction.NORTHWEST,
-                Direction.NORTHEAST});
+                Direction.NORTHEAST
+        });
     }
 }

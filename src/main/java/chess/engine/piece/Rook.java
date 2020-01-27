@@ -7,6 +7,7 @@ public class Rook extends Piece{
         super('R', new Direction[]{Direction.NORTH,
                 Direction.SOUTH,
                 Direction.EAST,
-                Direction.WEST});
+                Direction.WEST
+        });
     }
 }
