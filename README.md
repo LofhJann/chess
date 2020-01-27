@@ -1,4 +1,5 @@
 # Shakkitekoäly
+[![Build Status](https://travis-ci.org/LofhJann/chess.svg?branch=master)](https://travis-ci.org/LofhJann/chess)
 
 Tiran harjoitustyö annetun pohjan avulla
 
