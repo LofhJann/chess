@@ -6,6 +6,7 @@ public class Move extends Pair<String> {
 
     private String startingSquare;
     private String endSquare;
+    private String promotion;
 
     public Move(String startingSquare, String endSquare) {
         super(startingSquare, endSquare);
@@ -27,8 +28,19 @@ public class Move extends Pair<String> {
         this.endSquare = endSquare;
     }
 
+    public String getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(String promotion) {
+        this.promotion = promotion;
+    }
+
+    /**
+     * @return UCI formatted representation of Move
+     */
     @Override
     public String toString() {
-        return startingSquare + endSquare;
+        return startingSquare + endSquare + (this.promotion != null ? this.promotion : "");
     }
 }
