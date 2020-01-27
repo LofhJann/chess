@@ -1,8 +1,10 @@
 package chess.engine;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 
@@ -56,6 +58,18 @@ public class BoardTest {
                 fail("Index " + i + " did not match! (" + "expected '" + testBoard[i] + "' got '" + board.getBoard()[i] + "')");
             }
         }
+    }
+
+    @Test
+    public void squareToBoardIndexWorksCorrect() {
+        Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\n");
+
+        assertEquals(Square.A1.getIntValue(), board.squareToBoardIndex("a1"));
+        assertEquals(Square.H8.getIntValue(), board.squareToBoardIndex("h8"));
+        assertEquals(Square.B6.getIntValue(), board.squareToBoardIndex("b6"));
+        assertEquals("Uppercase was not handled correctly",
+                Square.B6.getIntValue(), board.squareToBoardIndex("B6"));
+
     }
 
 }

@@ -16,6 +16,9 @@ public class Board {
         setupBoardFromFEN(initialFen);
     }
 
+    public Board() {
+    }
+
     public char[] getBoard() {
         return board;
     }
@@ -44,5 +47,13 @@ public class Board {
                 boardIndex++;
             }
         }
+    }
+
+    public void updateBoardAfterMove(Move move) {
+        // TODO
+    }
+
+    public int squareToBoardIndex(String square) {
+        return (square.toLowerCase().charAt(0) - 97) + (Integer.parseInt("" + square.charAt(1)) - 1) * 16;
     }
 }
