@@ -24,6 +24,11 @@ public class GameState {
     public String id;
 
     /**
+     * State of Board and pieces in current game
+     */
+    public Board board;
+
+    /**
      * Player name for white side if this is lichess game
      */
     public String playingBlack;
@@ -58,6 +63,7 @@ public class GameState {
 
     public GameState() {
         this.moves = new ArrayList();
+        this.board = new Board("\"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\\n\"");
     }
 
     /**
