@@ -2,7 +2,6 @@ package chess.engine;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
 
 import static org.junit.Assert.fail;
 
