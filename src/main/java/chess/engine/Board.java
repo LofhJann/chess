@@ -24,7 +24,12 @@ public class Board {
     }
 
     // TODO: Check for unallowed methods
-    // TODO: Fix me.
+    /**
+     * Sets up board using given FEN String.
+     *
+     * @param fenString FEN formatted String of starting position.
+     * @see <a href="https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation">https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation</a>
+     */
     public void setupBoardFromFEN(String fenString) {
         int boardIndex = 0;
 
@@ -53,6 +58,12 @@ public class Board {
         // TODO
     }
 
+    /**
+     * Converts given square to index on board array
+     *
+     * @param square String representation of square on board
+     * @return Board index of given square String
+     */
     public int squareToBoardIndex(String square) {
         return (square.toLowerCase().charAt(0) - 97) + (Integer.parseInt("" + square.charAt(1)) - 1) * 16;
     }
