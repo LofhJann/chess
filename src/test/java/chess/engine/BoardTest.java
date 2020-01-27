@@ -1,6 +1,5 @@
 package chess.engine;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,17 +9,23 @@ import static org.junit.Assert.fail;
 
 public class BoardTest {
 
-    private char[] testBoard = new char[128];
+    private static final String initialFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\n";
+    private Board board;
 
-    //TODO: Replace with Square names
     @Before
     public void initTestBoard() {
+        board = new Board(initialFen);
+    }
+
+    @Test
+    public void testBoardIsGeneratedCorrectlyInSetup() {
+        char[] testBoard = new char[128];
         testBoard[Square.A1.getIntValue()] = 'r';
         testBoard[Square.B1.getIntValue()] = 'n';
         testBoard[Square.C1.getIntValue()] = 'b';
         testBoard[Square.D1.getIntValue()] = 'q';
         testBoard[Square.E1.getIntValue()] = 'k';
-        testBoard[Square.F1.getIntValue()]= 'b';
+        testBoard[Square.F1.getIntValue()] = 'b';
         testBoard[Square.G1.getIntValue()] = 'n';
         testBoard[Square.H1.getIntValue()] = 'r';
         testBoard[Square.A2.getIntValue()] = 'p';
@@ -44,14 +49,9 @@ public class BoardTest {
         testBoard[Square.C8.getIntValue()] = 'B';
         testBoard[Square.D8.getIntValue()] = 'Q';
         testBoard[Square.E8.getIntValue()] = 'K';
-        testBoard[Square.F8.getIntValue()]= 'B';
+        testBoard[Square.F8.getIntValue()] = 'B';
         testBoard[Square.G8.getIntValue()] = 'N';
         testBoard[Square.H8.getIntValue()] = 'R';
-    }
-
-    @Test
-    public void testBoardIsGeneratedCorrectlyInSetup() {
-        Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\n");
 
         for (int i = 0; i < testBoard.length; i++) {
             if (board.getBoard()[i] != testBoard[i]) {
@@ -62,7 +62,6 @@ public class BoardTest {
 
     @Test
     public void squareToBoardIndexWorksCorrect() {
-        Board board = new Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\n");
 
         assertEquals(Square.A1.getIntValue(), board.squareToBoardIndex("a1"));
         assertEquals(Square.H8.getIntValue(), board.squareToBoardIndex("h8"));
