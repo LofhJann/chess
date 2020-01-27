@@ -62,12 +62,19 @@ public class BoardTest {
 
     @Test
     public void squareToBoardIndexWorksCorrect() {
-
         assertEquals(Square.A1.getIntValue(), board.squareToBoardIndex("a1"));
         assertEquals(Square.H8.getIntValue(), board.squareToBoardIndex("h8"));
         assertEquals(Square.B6.getIntValue(), board.squareToBoardIndex("b6"));
         assertEquals("Uppercase was not handled correctly",
                 Square.B6.getIntValue(), board.squareToBoardIndex("B6"));
+    }
+
+    @Test
+    public void testUpdateBoardAfterMoveWorksForAMove() {
+        board.updateBoardAfterMove(new Move("b2", "b3"));
+
+        assertEquals("Starting square was not correctly cleared", '\u0000', board.getBoard()[Square.B2.getIntValue()]);
+        assertEquals("Ending square was not correctly set", 'p', board.getBoard()[Square.B3.getIntValue()]);
 
     }
 
