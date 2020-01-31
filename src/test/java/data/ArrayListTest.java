@@ -87,4 +87,41 @@ public class ArrayListTest {
         ArrayList<Object> arrayList = new ArrayList<>();
         arrayList.get(0);
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void removeIndexOverSizeThrowsException() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.remove(0);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void removeIndexUnderZeroThrowsException() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.remove(-1);
+    }
+
+    @Test
+    public void arrayListGrowsWhenNeeded() {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            arrayList.add(i);
+        }
+
+        Assert.assertEquals(10, (int)arrayList.get(10));
+    }
+
+    @Test
+    public void growIfNeededKeepsDataInSameIndex() {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            arrayList.add(i);
+        }
+
+        for (int i = 0; i < 50; i++) {
+            if (arrayList.get(i) != i) {
+                Assert.fail();
+            }
+        }
+
+    }
 }
