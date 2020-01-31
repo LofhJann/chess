@@ -2,11 +2,11 @@ package data;
 
 import java.util.StringJoiner;
 
-public class Pair<T> {
+public class Pair<T, E> {
     private T a;
-    private T b;
+    private E b;
 
-    public Pair(T a, T b) {
+    public Pair(T a, E b) {
         this.a = a;
         this.b = b;
     }
@@ -22,11 +22,11 @@ public class Pair<T> {
         this.a = a;
     }
 
-    public T getB() {
+    public E getB() {
         return b;
     }
 
-    public void setB(T b) {
+    public void setB(E b) {
         this.b = b;
     }
 
