@@ -47,11 +47,11 @@ public class ArrayList<E> {
     }
 
     private Object[] growIfNeeded() {
-        return growIfNeeded(this.size + 1);
+        return growIfNeeded(this.size + 2);
     }
 
     private Object[] growIfNeeded(int minCapacity) {
-        if (minCapacity > data.length) {
+        if (minCapacity >= data.length + 1) {
             final int oldCapasity = minCapacity - 1;
             return arrayCopy(data, new Object[oldCapasity * 3 / 2 + 1]);
         }
@@ -59,7 +59,7 @@ public class ArrayList<E> {
     }
 
     private Object[] arrayCopy(Object[] oldArray, Object[] newArray) {
-        for (int i = 0; i < newArray.length; i++) {
+        for (int i = 0; i < oldArray.length; i++) {
             newArray[i] = oldArray[i];
         }
         return newArray;
