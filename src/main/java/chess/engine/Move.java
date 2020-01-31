@@ -2,7 +2,7 @@ package chess.engine;
 
 import data.Pair;
 
-public class Move extends Pair<String> {
+public class Move extends Pair<String, String> {
 
     private String startingSquare;
     private String endSquare;
