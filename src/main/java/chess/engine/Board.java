@@ -44,16 +44,27 @@ public class Board {
     }
 
     /**
-     *
      * @return 128-bit array representing current state of board
      */
     public char[] getBoard() {
         return board;
     }
 
+    /**
+     *
+     * @return Current value of pieces on board
+     */
     public double evaluatePosition() {
-        // TODO: Todo
-        return 0.0;
+        double sum = 0;
+
+        for (Piece piece : blackPieces) {
+            sum += piece == null ? 0 : piece.getValue();
+        }
+        for (Piece piece : whitePieces) {
+            sum += piece == null ? 0 : piece.getValue();
+        }
+
+        return sum;
     }
 
 
@@ -90,6 +101,7 @@ public class Board {
 
     /**
      * Updates state of board with move that was done
+     *
      * @param move Last move done
      */
     public void updateBoardAfterMove(Move move) {
@@ -104,5 +116,13 @@ public class Board {
      */
     public int squareToBoardIndex(String square) {
         return (square.toLowerCase().charAt(0) - 97) + (Integer.parseInt("" + square.charAt(1)) - 1) * 16;
+    }
+
+    public Piece[] getBlackPieces() {
+        return blackPieces;
+    }
+
+    public Piece[] getWhitePieces() {
+        return whitePieces;
     }
 }

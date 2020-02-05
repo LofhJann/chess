@@ -1,11 +1,11 @@
 package chess.engine;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 
 public class BoardTest {
@@ -78,6 +78,17 @@ public class BoardTest {
         assertEquals("Starting square was not correctly cleared", '\u0000', board.getBoard()[Square.B2.getIntValue()]);
         assertEquals("Ending square was not correctly set", 'p', board.getBoard()[Square.B3.getIntValue()]);
 
+    }
+
+    @Test
+    public void testEvaluatePosition() {
+        board.getBlackPieces()[0] = null;
+
+        assertEquals("Evaluation didn't work when black piece was eaten", 10, board.evaluatePosition(), 0);
+
+        board.getWhitePieces()[0] = null;
+
+        assertEquals("Evaluation didn't work when white piece was eaten", 0, board.evaluatePosition(), 0);
     }
 
 }
