@@ -1,5 +1,6 @@
 package chess.engine.piece;
 
+import chess.engine.Color;
 import chess.engine.Direction;
 
 public class Pawn extends Piece {
@@ -7,8 +8,8 @@ public class Pawn extends Piece {
 
     private boolean enpassant = false; // TODO: Implement, or move?
 
-    public Pawn() {
-        super('P', new Direction[]{Direction.NORTH});
+    public Pawn(Color color) {
+        super('P', new Direction[]{Direction.NORTH}, color, 10);
         firstMove = true;
     }
 

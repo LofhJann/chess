@@ -1,5 +1,6 @@
 package chess.engine.piece;
 
+import chess.engine.Color;
 import chess.engine.Direction;
 
 public abstract class Piece {
@@ -7,10 +8,14 @@ public abstract class Piece {
     private final char pieceSymbol;
     private final Direction[] moveDirections;
     private int position; //TODO: Implement
+    private Color color;
+    private int value;
 
-    public Piece(char pieceSymbol, Direction[] moveDirections) {
+    public Piece(char pieceSymbol, Direction[] moveDirections, Color color, int value) {
         this.pieceSymbol = pieceSymbol;
         this.moveDirections = moveDirections;
+        this.color = color;
+        this.value = value;
     }
 
     public boolean isLegalDirection(int targetSquare) {
@@ -29,6 +34,10 @@ public abstract class Piece {
 
     public Direction[] getMoveDirections() {
         return moveDirections;
+    }
+
+    public int getValue() {
+        return value * color.getIntValue();
     }
 
 }

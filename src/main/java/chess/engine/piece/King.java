@@ -1,9 +1,10 @@
 package chess.engine.piece;
 
+import chess.engine.Color;
 import chess.engine.Direction;
 
 public class King extends Piece {
-    public King() {
+    public King(Color color) {
         super('K', new Direction[]{Direction.NORTH,
                 Direction.SOUTH,
                 Direction.EAST,
@@ -12,7 +13,7 @@ public class King extends Piece {
                 Direction.SOUTHWEST,
                 Direction.NORTHWEST,
                 Direction.NORTHEAST
-        });
+        }, color, 900);
     }
 
     @Override
