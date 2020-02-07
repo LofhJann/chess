@@ -17,7 +17,7 @@ public class ArrayList<E> {
     public void remove(int index) {
         if (index >= 0 && index < size) {
             for (int i = size - 1; i > index; i--) {
-                data[i-1] = data[i];
+                data[i - 1] = data[i];
             }
             size--;
         } else {
@@ -63,6 +63,11 @@ public class ArrayList<E> {
             newArray[i] = oldArray[i];
         }
         return newArray;
+    }
+
+    // TODO: Remove this later!!!
+    public Object[] getData() {
+        return data;
     }
 
     public int size() {
