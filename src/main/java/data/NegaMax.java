@@ -67,6 +67,7 @@ public class NegaMax {
     }
 
     public int calculateValueFromFEN(String fenString) {
+        // TODO: Add square based evaluation
         int value = 0;
         for (int i = 0; i < fenString.length(); i++) {
             switch (fenString.charAt(i)) {
@@ -112,7 +113,6 @@ public class NegaMax {
                     break;
             }
         }
-
         return value;
     }
 }
