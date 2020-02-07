@@ -4,10 +4,11 @@
 package chess;
 
 import chess.bot.ChessBot;
-import chess.bot.TestBot;
+import chess.bot.MyBot;
 import chess.connection.LichessAPI;
+import chess.connection.XBoardHandler;
 import chess.model.Profile;
-import chess.connection.*;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class App {
         You need to place your bot implementation to the variable below.
         Make sure it implements the interface ChessBot, and don't change the variable name!
         */
-        ChessBot bot = new TestBot(); // Your bot here!
+        ChessBot bot = new MyBot(); // Your bot here!
 
         if (isLichess) {
             if (token == null) {
