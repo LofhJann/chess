@@ -1,6 +1,7 @@
 package chess.engine;
 
 import chess.engine.piece.*;
+import data.ArrayList;
 
 /**
  * Tracks current state of board
@@ -15,17 +16,19 @@ public class Board {
      * Photo explanation of 0x88</a>
      */
     private char[] board = new char[128];
-    private Piece[] blackPieces = new Piece[]{new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
-            new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
-            new Rook(Color.BLACK), new Rook(Color.BLACK), new Bishop(Color.BLACK), new Bishop(Color.BLACK),
-            new Queen(Color.BLACK), new King(Color.BLACK), new Knight(Color.BLACK), new Knight(Color.BLACK)
-    };
-    private Piece[] whitePieces = new Piece[]{new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
-            new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
-            new Pawn(Color.WHITE), new Rook(Color.WHITE), new Rook(Color.WHITE), new Bishop(Color.WHITE),
-            new Bishop(Color.WHITE), new Queen(Color.WHITE), new King(Color.WHITE),
-            new Knight(Color.WHITE), new Knight(Color.WHITE)
-    };
+    //    private Piece[] blackPieces = new Piece[]{new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
+//            new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
+//            new Rook(Color.BLACK), new Rook(Color.BLACK), new Bishop(Color.BLACK), new Bishop(Color.BLACK),
+//            new Queen(Color.BLACK), new King(Color.BLACK), new Knight(Color.BLACK), new Knight(Color.BLACK)
+//    };
+//    private Piece[] whitePieces = new Piece[]{new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
+//            new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
+//            new Pawn(Color.WHITE), new Rook(Color.WHITE), new Rook(Color.WHITE), new Bishop(Color.WHITE),
+//            new Bishop(Color.WHITE), new Queen(Color.WHITE), new King(Color.WHITE),
+//            new Knight(Color.WHITE), new Knight(Color.WHITE)
+//    };
+    private ArrayList<Piece> blackPieces = new ArrayList<>();
+    private ArrayList<Piece> whitePieces = new ArrayList<>();
 
     /**
      * Create new Board with initial position given
@@ -41,6 +44,8 @@ public class Board {
      * Create new Board with no position given
      */
     public Board() {
+        setupBoardFromFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1\n");
+
     }
 
     /**
@@ -51,17 +56,16 @@ public class Board {
     }
 
     /**
-     *
      * @return Current value of pieces on board
      */
     public double evaluatePosition() {
         double sum = 0;
 
-        for (Piece piece : blackPieces) {
-            sum += piece == null ? 0 : piece.getValue();
+        for (Object piece : blackPieces.getData()) {
+            sum += piece == null ? 0 : ((Piece) piece).getValue();
         }
-        for (Piece piece : whitePieces) {
-            sum += piece == null ? 0 : piece.getValue();
+        for (Object piece : whitePieces.getData()) {
+            sum += piece == null ? 0 : ((Piece) piece).getValue();
         }
 
         return sum;
@@ -74,7 +78,6 @@ public class Board {
      * @param fenString FEN formatted String of starting position.
      * @see <a href="https://en.wikipedia.org/wiki/Forsyth-Edwards_Notation">https://en.wikipedia.org/wiki/Forsyth-Edwards_Notation</a>
      */
-    // TODO: Check for unallowed methods
     public void setupBoardFromFEN(String fenString) {
         int boardIndex = 0;
 
@@ -94,8 +97,52 @@ public class Board {
 
             } else {
                 board[boardIndex] = fenString.charAt(i);
+                addPieceToList(fenString.charAt(i), boardIndex);
                 boardIndex++;
             }
+        }
+    }
+
+    private void addPieceToList(char pieceSymbol, int boardIndex) {
+        switch (pieceSymbol) {
+            case 'p':
+                blackPieces.add(new Pawn(Color.BLACK));
+                break;
+            case 'P':
+                whitePieces.add(new Pawn(Color.WHITE));
+                break;
+            case 'n':
+                blackPieces.add(new Knight(Color.BLACK));
+                break;
+            case 'N':
+                whitePieces.add(new Knight(Color.WHITE));
+                break;
+            case 'b':
+                blackPieces.add(new Bishop(Color.BLACK));
+                break;
+            case 'B':
+                whitePieces.add(new Bishop(Color.WHITE));
+                break;
+            case 'r':
+                blackPieces.add(new Rook(Color.BLACK));
+                break;
+            case 'R':
+                whitePieces.add(new Rook(Color.WHITE));
+                break;
+            case 'q':
+                blackPieces.add(new Queen(Color.BLACK));
+                break;
+            case 'Q':
+                whitePieces.add(new Queen(Color.WHITE));
+                break;
+            case 'k':
+                blackPieces.add(new King(Color.BLACK));
+                break;
+            case 'K':
+                whitePieces.add(new King(Color.WHITE));
+                break;
+            default:
+                break;
         }
     }
 
@@ -118,11 +165,11 @@ public class Board {
         return (square.toLowerCase().charAt(0) - 97) + (Integer.parseInt("" + square.charAt(1)) - 1) * 16;
     }
 
-    public Piece[] getBlackPieces() {
+    public ArrayList<Piece> getBlackPieces() {
         return blackPieces;
     }
 
-    public Piece[] getWhitePieces() {
+    public ArrayList<Piece> getWhitePieces() {
         return whitePieces;
     }
 }
