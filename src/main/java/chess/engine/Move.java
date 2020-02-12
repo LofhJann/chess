@@ -12,6 +12,11 @@ public class Move extends Pair<String, String> {
         super(startingSquare, endSquare);
     }
 
+    public Move(String startingSquare, String endSquare, String promotion) {
+        super(startingSquare, endSquare);
+        this.promotion = promotion;
+    }
+
     public String getStartingSquare() {
         return startingSquare;
     }
