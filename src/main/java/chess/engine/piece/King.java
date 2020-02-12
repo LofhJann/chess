@@ -3,6 +3,7 @@ package chess.engine.piece;
 import chess.engine.Color;
 import chess.engine.Direction;
 
+// TODO: Implement castling
 public class King extends Piece {
     public static final int[] EVAL_ARRAY = {
             -30, -40, -40, -50, -50, -40, -40, -30,
