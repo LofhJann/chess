@@ -1,4 +1,4 @@
-package chess.engine;
+package chess.engine.board;
 
 /**
  * Converts square notation to index in Board array

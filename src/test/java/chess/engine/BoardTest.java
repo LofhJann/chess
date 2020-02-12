@@ -1,5 +1,8 @@
 package chess.engine;
 
+import chess.engine.board.Board;
+import chess.engine.board.Move;
+import chess.engine.board.Square;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

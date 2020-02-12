@@ -1,8 +1,5 @@
 package chess.engine.piece;
 
-import chess.engine.Color;
-import chess.engine.Direction;
-
 // TODO: Implement castling
 public class King extends Piece {
     public static final int[] EVAL_ARRAY = {

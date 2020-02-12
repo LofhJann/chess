@@ -1,8 +1,5 @@
 package chess.engine.piece;
 
-import chess.engine.Color;
-import chess.engine.Direction;
-
 public class Knight extends Piece {
     public static final int[] EVAL_ARRAY = {
             -50, -40, -30, -30, -30, -30, -40, -50,

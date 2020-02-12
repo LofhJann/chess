@@ -1,8 +1,5 @@
 package chess.engine.piece;
 
-import chess.engine.Color;
-import chess.engine.Direction;
-
 public abstract class Piece {
 
     private final char pieceSymbol;

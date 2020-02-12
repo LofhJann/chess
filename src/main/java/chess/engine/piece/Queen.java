@@ -1,8 +1,5 @@
 package chess.engine.piece;
 
-import chess.engine.Color;
-import chess.engine.Direction;
-
 public class Queen extends Piece {
     public static final int[] EVAL_ARRAY = {
             -20, -10, -10, -5, -5, -10, -10, -20,

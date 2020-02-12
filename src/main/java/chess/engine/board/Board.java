@@ -1,5 +1,6 @@
-package chess.engine;
+package chess.engine.board;
 
+import chess.engine.piece.Color;
 import chess.engine.piece.*;
 import data.ArrayList;
 

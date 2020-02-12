@@ -1,8 +1,5 @@
 package chess.engine.piece;
 
-import chess.engine.Color;
-import chess.engine.Direction;
-
 public class Pawn extends Piece {
     private static final int[] EVAL_ARRAY = {
             0, 0, 0, 0, 0, 0, 0, 0,

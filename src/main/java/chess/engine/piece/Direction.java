@@ -1,4 +1,4 @@
-package chess.engine;
+package chess.engine.piece;
 
 /**
  * Possible movements converted to locations of next square in that direction (current square + direction = target square)

@@ -1,8 +1,5 @@
 package chess.engine.piece;
 
-import chess.engine.Color;
-import chess.engine.Direction;
-
 public class Bishop extends Piece {
     private static final int[] EVAL_ARRAY = {
             -20, -10, -10, -10, -10, -10, -10, -20,

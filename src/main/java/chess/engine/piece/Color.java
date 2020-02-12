@@ -1,4 +1,4 @@
-package chess.engine;
+package chess.engine.piece;
 
 public enum Color {
     WHITE(1), BLACK(-1);

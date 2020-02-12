@@ -1,4 +1,4 @@
-package chess.engine;
+package chess.engine.board;
 
 import data.Pair;
 

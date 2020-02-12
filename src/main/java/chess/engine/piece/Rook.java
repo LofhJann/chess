@@ -1,8 +1,5 @@
 package chess.engine.piece;
 
-import chess.engine.Color;
-import chess.engine.Direction;
-
 public class Rook extends Piece {
     public static final int[] EVAL_ARRAY = {
             0, 0, 0, 0, 0, 0, 0, 0,
