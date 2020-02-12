@@ -96,40 +96,40 @@ public class Board {
     private void addPieceToList(char pieceSymbol, int boardIndex) {
         switch (pieceSymbol) {
             case 'p':
-                blackPieces.add(new Pawn(Color.BLACK));
+                blackPieces.add(new Pawn(Color.BLACK, boardIndex));
                 break;
             case 'P':
-                whitePieces.add(new Pawn(Color.WHITE));
+                whitePieces.add(new Pawn(Color.WHITE, boardIndex));
                 break;
             case 'n':
-                blackPieces.add(new Knight(Color.BLACK));
+                blackPieces.add(new Knight(Color.BLACK, boardIndex));
                 break;
             case 'N':
-                whitePieces.add(new Knight(Color.WHITE));
+                whitePieces.add(new Knight(Color.WHITE, boardIndex));
                 break;
             case 'b':
-                blackPieces.add(new Bishop(Color.BLACK));
+                blackPieces.add(new Bishop(Color.BLACK, boardIndex));
                 break;
             case 'B':
-                whitePieces.add(new Bishop(Color.WHITE));
+                whitePieces.add(new Bishop(Color.WHITE, boardIndex));
                 break;
             case 'r':
-                blackPieces.add(new Rook(Color.BLACK));
+                blackPieces.add(new Rook(Color.BLACK, boardIndex));
                 break;
             case 'R':
-                whitePieces.add(new Rook(Color.WHITE));
+                whitePieces.add(new Rook(Color.WHITE, boardIndex));
                 break;
             case 'q':
-                blackPieces.add(new Queen(Color.BLACK));
+                blackPieces.add(new Queen(Color.BLACK, boardIndex));
                 break;
             case 'Q':
-                whitePieces.add(new Queen(Color.WHITE));
+                whitePieces.add(new Queen(Color.WHITE, boardIndex));
                 break;
             case 'k':
-                blackPieces.add(new King(Color.BLACK));
+                blackPieces.add(new King(Color.BLACK, boardIndex));
                 break;
             case 'K':
-                whitePieces.add(new King(Color.WHITE));
+                whitePieces.add(new King(Color.WHITE, boardIndex));
                 break;
             default:
                 break;
