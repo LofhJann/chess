@@ -16,17 +16,7 @@ public class Board {
      * Photo explanation of 0x88</a>
      */
     private char[] board = new char[128];
-    //    private Piece[] blackPieces = new Piece[]{new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
-//            new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK), new Pawn(Color.BLACK),
-//            new Rook(Color.BLACK), new Rook(Color.BLACK), new Bishop(Color.BLACK), new Bishop(Color.BLACK),
-//            new Queen(Color.BLACK), new King(Color.BLACK), new Knight(Color.BLACK), new Knight(Color.BLACK)
-//    };
-//    private Piece[] whitePieces = new Piece[]{new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
-//            new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE), new Pawn(Color.WHITE),
-//            new Pawn(Color.WHITE), new Rook(Color.WHITE), new Rook(Color.WHITE), new Bishop(Color.WHITE),
-//            new Bishop(Color.WHITE), new Queen(Color.WHITE), new King(Color.WHITE),
-//            new Knight(Color.WHITE), new Knight(Color.WHITE)
-//    };
+
     private ArrayList<Piece> blackPieces = new ArrayList<>();
     private ArrayList<Piece> whitePieces = new ArrayList<>();
 
