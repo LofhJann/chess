@@ -12,11 +12,22 @@ public class MoveGenerator {
     private static ArrayList<Move> generatePseudoLegalMoves(Board board) {
         ArrayList<Move> moves = new ArrayList<>();
 
+        generatePawnMoves(board, moves);
+        generateBishopMoves(board, moves);
+        generateKingMoves(board, moves);
+        generateKnightMoves(board, moves);
+        generateQueenMoves(board, moves);
+        generateRookMoves(board, moves);
+        
         return moves;
     }
 
     // TODO: enpassant
     private static ArrayList<Move> generatePawnMoves(Board board, ArrayList<Move> moves) {
+        return moves;
+    }
+
+    private static ArrayList<Move> generatePawnCaptures(Board board, ArrayList<Move> moves) {
         return moves;
     }
 
