@@ -46,7 +46,7 @@ public class Board {
     }
 
     /**
-     * @return Current value of pieces on board
+     * @return Current value of position on board
      */
     public double evaluatePosition() {
         double sum = 0;
