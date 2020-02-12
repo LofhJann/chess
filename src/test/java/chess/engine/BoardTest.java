@@ -1,6 +1,5 @@
 package chess.engine;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -55,8 +54,8 @@ public class BoardTest {
         testBoard[Square.H8.getIntValue()] = 'R';
 
         for (int i = 0; i < testBoard.length; i++) {
-            if (board.getBoard()[i] != testBoard[i]) {
-                fail("Index " + i + " did not match! (" + "expected '" + testBoard[i] + "' got '" + board.getBoard()[i] + "')");
+            if (board.getBoardState()[i] != testBoard[i]) {
+                fail("Index " + i + " did not match! (" + "expected '" + testBoard[i] + "' got '" + board.getBoardState()[i] + "')");
             }
         }
     }
@@ -75,8 +74,8 @@ public class BoardTest {
     public void testUpdateBoardAfterMoveWorksForAMove() {
         board.updateBoardAfterMove(new Move("b2", "b3"));
 
-        assertEquals("Starting square was not correctly cleared", '\u0000', board.getBoard()[Square.B2.getIntValue()]);
-        assertEquals("Ending square was not correctly set", 'p', board.getBoard()[Square.B3.getIntValue()]);
+        assertEquals("Starting square was not correctly cleared", '\u0000', board.getBoardState()[Square.B2.getIntValue()]);
+        assertEquals("Ending square was not correctly set", 'p', board.getBoardState()[Square.B3.getIntValue()]);
 
     }
 

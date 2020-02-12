@@ -15,7 +15,7 @@ public class Board {
      * @see <a href="https://1.bp.blogspot.com/_WEXl7U-k4hA/RYGnrJx3m4I/AAAAAAAAAAk/yUlMZh4YLI4/s1600/br%C3%A4demed0x88+kopiera.gif>
      * Photo explanation of 0x88</a>
      */
-    private char[] board = new char[128];
+    private char[] boardState = new char[128];
 
     private ArrayList<Piece> blackPieces = new ArrayList<>();
     private ArrayList<Piece> whitePieces = new ArrayList<>();
@@ -41,8 +41,8 @@ public class Board {
     /**
      * @return 128-bit array representing current state of board
      */
-    public char[] getBoard() {
-        return board;
+    public char[] getBoardState() {
+        return boardState;
     }
 
     /**
@@ -86,7 +86,7 @@ public class Board {
                 boardIndex += Integer.parseInt("" + fenString.charAt(i));
 
             } else {
-                board[boardIndex] = fenString.charAt(i);
+                boardState[boardIndex] = fenString.charAt(i);
                 addPieceToList(fenString.charAt(i), boardIndex);
                 boardIndex++;
             }
