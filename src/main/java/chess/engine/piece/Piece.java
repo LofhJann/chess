@@ -7,11 +7,18 @@ public abstract class Piece {
 
     private final char pieceSymbol;
     private final Direction[] moveDirections;
-    private int position; //TODO: Implement
+    private int position;
     private Color color;
     private int value;
 
     public Piece(char pieceSymbol, Direction[] moveDirections, Color color, int value) {
+        this.pieceSymbol = pieceSymbol;
+        this.moveDirections = moveDirections;
+        this.color = color;
+        this.value = value;
+    }
+
+    public Piece(char pieceSymbol, Direction[] moveDirections, Color color, int value, int position) {
         this.pieceSymbol = pieceSymbol;
         this.moveDirections = moveDirections;
         this.color = color;
@@ -40,4 +47,15 @@ public abstract class Piece {
         return value * color.getIntValue();
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 }

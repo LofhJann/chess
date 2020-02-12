@@ -15,11 +15,17 @@ public class Knight extends Piece {
             -50, -40, -30, -30, -30, -30, -40, -50
     };
 
+    public static final Direction[] directions = {
+            Direction.KNIGHT_EASTNORTH, Direction.KNIGHT_EASTSOUTH, Direction.KNIGHT_NORTHEAST, Direction.KNIGHT_NORTHWEST,
+            Direction.KNIGHT_SOUTHEAST, Direction.KNIGHT_SOUTHWEST, Direction.KNIGHT_WESTNORTH, Direction.KNIGHT_WESTSOUTH
+    };
+
     public Knight(Color color) {
-        super('N', new Direction[]{
-                Direction.KNIGHT_EASTNORTH, Direction.KNIGHT_EASTSOUTH, Direction.KNIGHT_NORTHEAST, Direction.KNIGHT_NORTHWEST,
-                Direction.KNIGHT_SOUTHEAST, Direction.KNIGHT_SOUTHWEST, Direction.KNIGHT_WESTNORTH, Direction.KNIGHT_WESTSOUTH
-        }, color, 30);
+        super('N', directions, color, 30);
+    }
+
+    public Knight(Color color, int position) {
+        super('N', directions, color, 30, position);
     }
 
     @Override

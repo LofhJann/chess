@@ -15,15 +15,21 @@ public class Queen extends Piece {
             -20, -10, -10, -5, -5, -10, -10, -20
     };
 
+    public static final Direction[] directions = {Direction.NORTH,
+            Direction.SOUTH,
+            Direction.EAST,
+            Direction.WEST,
+            Direction.SOUTHEAST,
+            Direction.SOUTHWEST,
+            Direction.NORTHWEST,
+            Direction.NORTHEAST
+    };
+
     public Queen(Color color) {
-        super('Q', new Direction[]{Direction.NORTH,
-                Direction.SOUTH,
-                Direction.EAST,
-                Direction.WEST,
-                Direction.SOUTHEAST,
-                Direction.SOUTHWEST,
-                Direction.NORTHWEST,
-                Direction.NORTHEAST
-        }, color, 90);
+        super('Q', directions, color, 90);
+    }
+
+    public Queen(Color color, int position) {
+        super('Q', directions, color, 90, position);
     }
 }

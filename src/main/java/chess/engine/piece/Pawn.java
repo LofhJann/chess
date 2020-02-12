@@ -14,12 +14,19 @@ public class Pawn extends Piece {
             5, 10, 10, -20, -20, 10, 10, 5,
             0, 0, 0, 0, 0, 0, 0, 0
     };
+
+    public static final Direction[] directions ={Direction.NORTH};
     private boolean firstMove;
 
     private boolean enpassant = false; // TODO: Implement, or move?
 
     public Pawn(Color color) {
-        super('P', new Direction[]{Direction.NORTH}, color, 10);
+        super('P', directions, color, 10);
+        firstMove = true;
+    }
+
+    public Pawn(Color color, int position) {
+        super('P', directions, color, 10, position);
         firstMove = true;
     }
 

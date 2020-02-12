@@ -15,16 +15,22 @@ public class King extends Piece {
             20, 30, 10, 0, 0, 10, 30, 20
     };
 
+    public static final Direction[] directions = {Direction.NORTH,
+            Direction.SOUTH,
+            Direction.EAST,
+            Direction.WEST,
+            Direction.SOUTHEAST,
+            Direction.SOUTHWEST,
+            Direction.NORTHWEST,
+            Direction.NORTHEAST
+    };
+
     public King(Color color) {
-        super('K', new Direction[]{Direction.NORTH,
-                Direction.SOUTH,
-                Direction.EAST,
-                Direction.WEST,
-                Direction.SOUTHEAST,
-                Direction.SOUTHWEST,
-                Direction.NORTHWEST,
-                Direction.NORTHEAST
-        }, color, 900);
+        super('K', directions, color, 900);
+    }
+
+    public King(Color color, int position) {
+        super('K', directions, color, 900, position);
     }
 
     @Override

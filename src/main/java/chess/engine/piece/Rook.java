@@ -15,11 +15,17 @@ public class Rook extends Piece {
             0, 0, 0, 5, 5, 0, 0, 0
     };
 
+    public static final Direction[] directions = {Direction.NORTH,
+            Direction.SOUTH,
+            Direction.EAST,
+            Direction.WEST
+    };
+
     public Rook(Color color) {
-        super('R', new Direction[]{Direction.NORTH,
-                Direction.SOUTH,
-                Direction.EAST,
-                Direction.WEST
-        }, color, 50);
+        super('R', directions, color, 50);
+    }
+
+    public Rook(Color color, int position) {
+        super('R', directions, color, 50, position);
     }
 }
