@@ -1,6 +1,11 @@
 package data;
 
-public class ArrayList<E> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class ArrayList<E> implements Iterable<E> {
     private Object[] data;
     private int size;
 
@@ -72,5 +77,39 @@ public class ArrayList<E> {
 
     public int size() {
         return this.size;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size && data[currentIndex] != null;
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return (E) data[currentIndex++];
+            }
+        };
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void forEach(Consumer<? super E> action) {
+        for (Object object : data) {
+            action.accept((E) object);
+        }
+    }
+
+    @Override
+    public Spliterator<E> spliterator() {
+        throw new UnsupportedOperationException("Spliterator not implemented!");
     }
 }
