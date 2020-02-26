@@ -4,6 +4,9 @@ import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ArrayListTest {
 
     @Test
@@ -123,5 +126,40 @@ public class ArrayListTest {
             }
         }
 
+    }
+
+    @Test
+    public void arrayListIteratorNextWorksCorrectly() {
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        arrayList.add("Hello");
+        arrayList.add("World!");
+
+        Iterator<String> iterator = arrayList.iterator();
+
+
+        Assert.assertEquals("Hello", iterator.next());
+        Assert.assertEquals("World!", iterator.next());
+    }
+
+    @Test
+    public void arrayListIteratorHasNextWorksCorrectly() {
+        ArrayList<String> arrayList = new ArrayList<>();
+        Iterator<String> iterator = arrayList.iterator();
+
+        Assert.assertFalse("Iterator should've been empty", iterator.hasNext());
+
+        arrayList.add("Hello");
+
+        Assert.assertTrue("Iterator should have had next value", iterator.hasNext());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void exceptionIsThrownWhenIteratingEmptyList() {
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        arrayList.iterator().next();
+
+        Assert.fail("Exception wasn't thrown when trying to iterate non existing element");
     }
 }
