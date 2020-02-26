@@ -26,7 +26,7 @@ public abstract class Piece {
     }
 
     public boolean isPseudoLegalMove(int targetSquare) {
-        if (targetSquare < Square.A1.getIntValue() || targetSquare > Square.H8.getIntValue()) {
+        if (targetSquare < Square.A1.getIntValue() || targetSquare > Square.H8.getIntValue() || (targetSquare & 0x88) != 0) {
             return false;
         }
         for (Direction direction : moveDirections) {
