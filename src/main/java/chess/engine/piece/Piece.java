@@ -1,5 +1,7 @@
 package chess.engine.piece;
 
+import chess.engine.board.Square;
+
 public abstract class Piece {
 
     private final char pieceSymbol;
@@ -23,8 +25,10 @@ public abstract class Piece {
         this.position = position;
     }
 
-    public boolean isLegalDirection(int targetSquare) {
-        // TODO: Implement pieces blocking movement check.
+    public boolean isPseudoLegalMove(int targetSquare) {
+        if (targetSquare < Square.A1.getIntValue() || targetSquare > Square.H8.getIntValue()) {
+            return false;
+        }
         for (Direction direction : moveDirections) {
             if (targetSquare % direction.intValue == 0) {
                 return true;

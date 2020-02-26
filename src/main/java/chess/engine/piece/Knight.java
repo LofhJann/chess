@@ -26,7 +26,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean isLegalDirection(int targetSquare) {
+    public boolean isPseudoLegalMove(int targetSquare) {
         for (Direction direction : getMoveDirections()) {
             if (targetSquare == direction.intValue) {
                 return true;

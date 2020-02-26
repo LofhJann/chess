@@ -28,7 +28,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isLegalDirection(int targetSquare) {
+    public boolean isPseudoLegalMove(int targetSquare) {
         return (targetSquare == Direction.NORTH.intValue)
                 || (firstMove && targetSquare == Direction.NORTH.intValue * 2);
     }

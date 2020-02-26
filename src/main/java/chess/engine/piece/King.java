@@ -32,7 +32,7 @@ public class King extends Piece {
     }
 
     @Override
-    public boolean isLegalDirection(int targetSquare) {
+    public boolean isPseudoLegalMove(int targetSquare) {
         for (Direction direction : getMoveDirections()) {
             if (direction.intValue == targetSquare) {
                 return true;
