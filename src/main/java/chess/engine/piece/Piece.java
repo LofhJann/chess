@@ -20,6 +20,7 @@ public abstract class Piece {
         this.moveDirections = moveDirections;
         this.color = color;
         this.value = value;
+        this.position = position;
     }
 
     public boolean isLegalDirection(int targetSquare) {
