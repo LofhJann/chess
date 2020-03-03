@@ -1,20 +1,21 @@
 package chess.engine.board;
 
-import data.Pair;
-
-public class Move extends Pair<String, String> {
+public class Move{
 
     private String startingSquare;
     private String endSquare;
     private String promotion;
 
     public Move(String startingSquare, String endSquare) {
-        super(startingSquare, endSquare);
+        this.startingSquare = startingSquare;
+        this.endSquare = endSquare;
     }
 
     public Move(String startingSquare, String endSquare, String promotion) {
-        super(startingSquare, endSquare);
+        this.startingSquare = startingSquare;
+        this.endSquare = endSquare;
         this.promotion = promotion;
+
     }
 
     public String getStartingSquare() {

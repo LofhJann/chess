@@ -7,9 +7,10 @@ import data.ArrayList;
 
 public class MoveGenerator {
 
-    public static ArrayList<Move> generateLegalMoves(Board board) {
+    public static ArrayList<Move> generateLegalMoves(Board board, Color currentPlayer) {
 
-        return new ArrayList<>();
+        // TODO: fix me
+        return generatePseudoLegalMoves(board, currentPlayer);
     }
 
     // TODO: Finish and test this
@@ -17,21 +18,20 @@ public class MoveGenerator {
         ArrayList<Move> moves = new ArrayList<>();
 
         for (Piece piece : getPieceList(board, currentPlayer)) {
+            int startingSquare = piece.getPosition();
             for (Direction direction : piece.getMoveDirections()) {
-                int currentSquare = piece.getPosition();
 
-                while (currentSquare > Square.A1.getIntValue() && currentSquare < Square.H8.getIntValue()) {
-                    int targetSquare = currentSquare + direction.intValue;
-                    if (piece.isPseudoLegalMove(targetSquare)) {
-                        moves.add(new Move(Square.getString(currentSquare), Square.getString(targetSquare)));
+                for (int targetSquare = startingSquare + direction.intValue;
+                     targetSquare >= Square.A1.getIntValue() && targetSquare <= Square.H8.getIntValue() && (targetSquare & 0x88) == 0;
+                     targetSquare += direction.intValue) {
+                    if (piece.isPseudoLegalMove(targetSquare, direction)) {
+                        moves.add(new Move(Square.getString(startingSquare), Square.getString(targetSquare)));
                     }
-                    currentSquare = targetSquare;
                 }
             }
         }
         // TODO: enpassant
         // TODO: Castling
-
 
 
         return moves;

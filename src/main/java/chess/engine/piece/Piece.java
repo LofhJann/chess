@@ -1,6 +1,7 @@
 package chess.engine.piece;
 
 import chess.engine.board.Square;
+import util.Math;
 
 public abstract class Piece {
 
@@ -26,15 +27,22 @@ public abstract class Piece {
     }
 
     public boolean isPseudoLegalMove(int targetSquare) {
-        if (targetSquare < Square.A1.getIntValue() || targetSquare > Square.H8.getIntValue() || (targetSquare & 0x88) != 0) {
+        if (targetSquare <= Square.A1.getIntValue() || targetSquare >= Square.H8.getIntValue() || (targetSquare & 0x88) != 0) {
             return false;
         }
         for (Direction direction : moveDirections) {
-            if (targetSquare % direction.intValue == 0) {
+            if (Math.abs(targetSquare - getPosition()) % direction.intValue == 0) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean isPseudoLegalMove(int targetSquare, Direction direction) {
+        if (targetSquare < Square.A1.getIntValue() || targetSquare > Square.H8.getIntValue() || (targetSquare & 0x88) != 0) {
+            return false;
+        }
+        return Math.abs(targetSquare - getPosition()) % direction.intValue == 0;
     }
 
     public char getPieceSymbol() {

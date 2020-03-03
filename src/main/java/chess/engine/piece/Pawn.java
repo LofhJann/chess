@@ -1,6 +1,7 @@
 package chess.engine.piece;
 
 public class Pawn extends Piece {
+
     private static final int[] EVAL_ARRAY = {
             0, 0, 0, 0, 0, 0, 0, 0,
             50, 50, 50, 50, 50, 50, 50, 50,
@@ -29,8 +30,8 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isPseudoLegalMove(int targetSquare) {
-        return (targetSquare == Direction.NORTH.intValue)
-                || (firstMove && targetSquare == Direction.NORTH.intValue * 2);
+        return (targetSquare == getPosition() + Direction.NORTH.intValue)
+                || (firstMove && targetSquare == getPosition() + Direction.NORTH.intValue * 2);
     }
 
     public void setFirstMove(boolean firstMove) {
