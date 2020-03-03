@@ -28,10 +28,15 @@ public class Knight extends Piece {
     @Override
     public boolean isPseudoLegalMove(int targetSquare) {
         for (Direction direction : getMoveDirections()) {
-            if (targetSquare == direction.intValue) {
+            if (targetSquare == getPosition() + direction.intValue) {
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean isPseudoLegalMove(int targetSquare, Direction direction) {
+        return targetSquare == getPosition() + direction.intValue;
     }
 }
