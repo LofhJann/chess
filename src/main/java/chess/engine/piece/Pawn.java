@@ -34,6 +34,11 @@ public class Pawn extends Piece {
                 || (firstMove && targetSquare == getPosition() + Direction.NORTH.intValue * 2);
     }
 
+    @Override
+    public boolean isPseudoLegalMove(int targetSquare, Direction direction) {
+        return isPseudoLegalMove(targetSquare);
+    }
+
     public void setFirstMove(boolean firstMove) {
         this.firstMove = firstMove;
     }
