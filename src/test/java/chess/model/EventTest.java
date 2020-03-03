@@ -52,7 +52,6 @@ public class EventTest {
     public String testJson2 = "{\"type\":\"gameStart\","
             + "\"game\":{\"id\":\"1lsvP62l\"}}";
     
-    // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test

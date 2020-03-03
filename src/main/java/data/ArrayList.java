@@ -70,7 +70,6 @@ public class ArrayList<E> implements Iterable<E> {
         return newArray;
     }
 
-    // TODO: Remove this later!!!
     public Object[] getData() {
         return data;
     }

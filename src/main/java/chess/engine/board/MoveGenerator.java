@@ -13,7 +13,6 @@ public class MoveGenerator {
         return generatePseudoLegalMoves(board, currentPlayer);
     }
 
-    // TODO: Finish and test this
     private static ArrayList<Move> generatePseudoLegalMoves(Board board, Color currentPlayer) {
         ArrayList<Move> moves = new ArrayList<>();
 
