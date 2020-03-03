@@ -96,40 +96,40 @@ public class Board {
 
     private void addPieceToList(char pieceSymbol, int boardIndex) {
         switch (pieceSymbol) {
-            case 'p':
+            case 'P':
                 blackPieces.add(new Pawn(Color.BLACK, boardIndex));
                 break;
-            case 'P':
+            case 'p':
                 whitePieces.add(new Pawn(Color.WHITE, boardIndex));
                 break;
-            case 'n':
+            case 'N':
                 blackPieces.add(new Knight(Color.BLACK, boardIndex));
                 break;
-            case 'N':
+            case 'n':
                 whitePieces.add(new Knight(Color.WHITE, boardIndex));
                 break;
-            case 'b':
+            case 'B':
                 blackPieces.add(new Bishop(Color.BLACK, boardIndex));
                 break;
-            case 'B':
+            case 'b':
                 whitePieces.add(new Bishop(Color.WHITE, boardIndex));
                 break;
-            case 'r':
+            case 'R':
                 blackPieces.add(new Rook(Color.BLACK, boardIndex));
                 break;
-            case 'R':
+            case 'r':
                 whitePieces.add(new Rook(Color.WHITE, boardIndex));
                 break;
-            case 'q':
+            case 'Q':
                 blackPieces.add(new Queen(Color.BLACK, boardIndex));
                 break;
-            case 'Q':
+            case 'q':
                 whitePieces.add(new Queen(Color.WHITE, boardIndex));
                 break;
-            case 'k':
+            case 'K':
                 blackPieces.add(new King(Color.BLACK, boardIndex));
                 break;
-            case 'K':
+            case 'k':
                 whitePieces.add(new King(Color.WHITE, boardIndex));
                 break;
             default:
