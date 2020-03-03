@@ -17,7 +17,7 @@ public class MoveGeneratorTest {
 
         ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
 
-        Assert.assertEquals(28, moves.size());
+        Assert.assertEquals(27, moves.size());
     }
 
     @Test
