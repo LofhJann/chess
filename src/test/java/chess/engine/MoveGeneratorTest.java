@@ -28,4 +28,40 @@ public class MoveGeneratorTest {
 
         Assert.assertEquals(2, moves.size());
     }
+
+    @Test
+    public void kingMovesGeneratedCorrectly() {
+        Board board = new Board("8/8/8/3k");
+
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
+
+        Assert.assertEquals(8, moves.size());
+    }
+
+    @Test
+    public void rookMovesGeneratedCorrectly() {
+        Board board = new Board("8/8/8/3r");
+
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
+
+        Assert.assertEquals(14, moves.size());
+    }
+
+    @Test
+    public void bishopMovesGeneratedCorrectly() {
+        Board board = new Board("8/8/8/3b");
+
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
+
+        Assert.assertEquals(13, moves.size());
+    }
+
+    @Test
+    public void knightMovesGeneratedCorrectly() {
+        Board board = new Board("8/8/8/3n");
+
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
+
+        Assert.assertEquals(8, moves.size());
+    }
 }
