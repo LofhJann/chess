@@ -7,6 +7,9 @@ import data.ArrayList;
 
 public class MoveGenerator {
 
+    private MoveGenerator() {
+    }
+
     public static ArrayList<Move> generateLegalMoves(Board board, Color currentPlayer) {
 
         // TODO: fix me
@@ -23,6 +26,7 @@ public class MoveGenerator {
                 for (int targetSquare = startingSquare + direction.intValue;
                      targetSquare >= Square.A1.getIntValue() && targetSquare <= Square.H8.getIntValue() && (targetSquare & 0x88) == 0;
                      targetSquare += direction.intValue) {
+
                     if (piece.isPseudoLegalMove(targetSquare, direction)) {
                         moves.add(new Move(Square.getString(startingSquare), Square.getString(targetSquare)));
                     }
