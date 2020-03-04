@@ -156,6 +156,38 @@ public class Board {
         return (square.toLowerCase().charAt(0) - 97) + (Integer.parseInt("" + square.charAt(1)) - 1) * 16;
     }
 
+    public char getSquareContents(int squareIndex) throws IllegalSquareIndexException {
+        if (squareIndex > boardState.length - 1 || squareIndex < 0) {
+            throw new IllegalSquareIndexException();
+        }
+        return boardState[squareIndex];
+    }
+
+    public boolean squareIsEmpty(int squareIndex) throws IllegalSquareIndexException {
+        if (squareIndex > boardState.length - 1 || squareIndex < 0) {
+            throw new IllegalSquareIndexException();
+        }
+
+        return boardState[squareIndex] == '\u0000';
+    }
+
+    public Color getSquarePieceColor(int squareIndex) throws IllegalSquareIndexException {
+        if (squareIndex > boardState.length - 1 || squareIndex < 0) {
+            throw new IllegalSquareIndexException();
+        }
+
+        if (squareIsEmpty(squareIndex)) {
+            return null;
+        }
+
+        boolean lowerCase = Character.isLowerCase(getSquareContents(squareIndex));
+        if (lowerCase) {
+            return Color.WHITE;
+        } else {
+            return Color.BLACK;
+        }
+    }
+
     public ArrayList<Piece> getBlackPieces() {
         return blackPieces;
     }
