@@ -1,5 +1,8 @@
 package data;
 
+import chess.engine.piece.Color;
+import chess.engine.piece.Piece;
+import chess.engine.piece.Queen;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,6 +28,19 @@ public class ArrayListTest {
         arrayList.remove(0);
 
         Assert.assertEquals("Not true!", arrayList.get(0));
+    }
+
+    @Test
+    public void removePieceWorksAsExpected() {
+        ArrayList<Piece> arrayList = new ArrayList<>();
+
+        Piece queen = new Queen(Color.WHITE);
+        Piece blackQueen = new Queen(Color.BLACK);
+        arrayList.add(queen);
+        arrayList.add(blackQueen);
+        arrayList.remove(queen);
+
+        Assert.assertEquals(blackQueen, arrayList.get(0));
     }
 
     @Test
