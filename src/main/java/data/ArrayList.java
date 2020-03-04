@@ -1,7 +1,5 @@
 package data;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
@@ -80,7 +78,6 @@ public class ArrayList<E> implements Iterable<E> {
         return this.size;
     }
 
-    @NotNull
     @SuppressWarnings("unchecked")
     @Override
     public Iterator<E> iterator() {
