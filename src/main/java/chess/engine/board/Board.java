@@ -3,6 +3,9 @@ package chess.engine.board;
 import chess.engine.piece.Color;
 import chess.engine.piece.*;
 import data.ArrayList;
+import data.Pair;
+
+import java.util.StringJoiner;
 
 /**
  * Tracks current state of board
@@ -20,6 +23,8 @@ public class Board {
 
     private ArrayList<Piece> blackPieces = new ArrayList<>();
     private ArrayList<Piece> whitePieces = new ArrayList<>();
+
+    private String memorizedPosition = null;
 
     /**
      * Create new Board with initial position given
@@ -194,5 +199,32 @@ public class Board {
 
     public ArrayList<Piece> getWhitePieces() {
         return whitePieces;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder fenString = new StringBuilder();
+        int emptySquareCount = 0;
+
+        for (int boardIndex = 0; boardIndex < boardState.length; boardIndex++) {
+            if ((boardIndex & 0x88) == 0) {
+                if (boardState[boardIndex] == '\u0000') {
+                    emptySquareCount++;
+                } else {
+                    fenString.append(boardState[boardIndex]);
+                }
+            } else {
+                if (emptySquareCount != 0) {
+                    fenString.append(emptySquareCount);
+                    emptySquareCount = 0;
+                }
+                fenString.append("/");
+                while ((boardIndex + 1 & 0x88) != 0) {
+                    boardIndex++;
+                }
+            }
+        }
+        fenString.deleteCharAt(fenString.length()-1);
+        return fenString.toString();
     }
 }

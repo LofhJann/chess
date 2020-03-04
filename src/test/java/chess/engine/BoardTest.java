@@ -3,6 +3,7 @@ package chess.engine;
 import chess.engine.board.Board;
 import chess.engine.board.Move;
 import chess.engine.board.Square;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -61,6 +62,13 @@ public class BoardTest {
                 fail("Index " + i + " did not match! (" + "expected '" + testBoard[i] + "' got '" + board.getBoardState()[i] + "')");
             }
         }
+    }
+
+    @Test
+    public void fenStringIsEncodedCorrectly() {
+        Board board = new Board(initialFen);
+
+        Assert.assertEquals("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", board.toString());
     }
 
     @Test
