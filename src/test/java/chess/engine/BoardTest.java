@@ -86,11 +86,11 @@ public class BoardTest {
     public void testEvaluatePosition() {
         board.getBlackPieces().getData()[0] = null;
 
-        assertEquals("Evaluation didn't work when black piece was eaten", 50, board.evaluatePosition(), 0);
+        assertEquals("Evaluation didn't work when black piece was eaten", 10, board.evaluatePosition(), 0);
 
         board.getWhitePieces().getData()[0] = null;
 
-        assertEquals("Evaluation didn't work when white piece was eaten", 40, board.evaluatePosition(), 0);
+        assertEquals("Evaluation didn't work when white piece was eaten", -40, board.evaluatePosition(), 0);
     }
 
 }
