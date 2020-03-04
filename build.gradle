@@ -19,8 +19,6 @@ plugins {
 
     id 'jacoco'
 
-    id 'checkstyle'
-
     id "org.sonarqube" version "2.8"
 }
 
@@ -69,11 +67,6 @@ dependencies {
 application {
     // Define the main class for the application
     mainClassName = 'chess.App'
-}
-
-checkstyle {
-    toolVersion '8.17'
-    ignoreFailures = true
 }
 
 check.dependsOn jacocoTestReport
