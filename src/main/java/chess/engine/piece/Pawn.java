@@ -1,5 +1,7 @@
 package chess.engine.piece;
 
+import chess.engine.board.Square;
+
 public class Pawn extends Piece {
 
     private static final int[] EVAL_ARRAY = {
@@ -13,25 +15,27 @@ public class Pawn extends Piece {
             0, 0, 0, 0, 0, 0, 0, 0
     };
 
-    public static final Direction[] directions ={Direction.NORTH};
-    private boolean firstMove;
+    public static final Direction[] directions = {Direction.NORTH};
 
     private boolean enpassant = false; // TODO: Implement, or move?
 
     public Pawn(Color color) {
         super('P', directions, color, 10);
-        firstMove = true;
     }
 
     public Pawn(Color color, int position) {
         super('P', directions, color, 10, position);
-        firstMove = true;
+    }
+
+    public boolean isFirstMove() {
+        return (getColor() == Color.WHITE && getPosition() <= Square.H2.getIntValue() && getPosition() >= Square.A2.getIntValue())
+                || (getColor() == Color.BLACK && getPosition() <= Square.H7.getIntValue() && getPosition() >= Square.A7.getIntValue());
     }
 
     @Override
     public boolean isPseudoLegalMove(int targetSquare) {
         return (targetSquare == getPosition() + Direction.NORTH.intValue)
-                || (firstMove && targetSquare == getPosition() + Direction.NORTH.intValue * 2);
+                || (isFirstMove() && targetSquare == getPosition() + Direction.NORTH.intValue * 2);
     }
 
     @Override
@@ -39,7 +43,4 @@ public class Pawn extends Piece {
         return isPseudoLegalMove(targetSquare);
     }
 
-    public void setFirstMove(boolean firstMove) {
-        this.firstMove = firstMove;
-    }
 }
