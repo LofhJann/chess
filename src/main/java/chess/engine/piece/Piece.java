@@ -68,4 +68,24 @@ public abstract class Piece {
     public Color getColor() {
         return color;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Piece piece = (Piece) o;
+
+        if (pieceSymbol != piece.pieceSymbol) return false;
+        if (position != piece.position) return false;
+        return color == piece.color;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = pieceSymbol;
+        result = 31 * result + position;
+        result = 31 * result + color.hashCode();
+        return result;
+    }
 }
