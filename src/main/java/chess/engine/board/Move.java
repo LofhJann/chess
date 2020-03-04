@@ -2,36 +2,28 @@ package chess.engine.board;
 
 public class Move{
 
-    private String startingSquare;
-    private String endSquare;
+    private Square startingSquare;
+    private Square endSquare;
     private String promotion;
 
-    public Move(String startingSquare, String endSquare) {
+    public Move(Square startingSquare, Square endSquare) {
         this.startingSquare = startingSquare;
         this.endSquare = endSquare;
     }
 
-    public Move(String startingSquare, String endSquare, String promotion) {
+    public Move(Square startingSquare, Square endSquare, String promotion) {
         this.startingSquare = startingSquare;
         this.endSquare = endSquare;
         this.promotion = promotion;
 
     }
 
-    public String getStartingSquare() {
+    public Square getStartingSquare() {
         return startingSquare;
     }
 
-    public void setStartingSquare(String startingSquare) {
-        this.startingSquare = startingSquare;
-    }
-
-    public String getEndSquare() {
+    public Square getEndSquare() {
         return endSquare;
-    }
-
-    public void setEndSquare(String endSquare) {
-        this.endSquare = endSquare;
     }
 
     public String getPromotion() {
@@ -47,6 +39,6 @@ public class Move{
      */
     @Override
     public String toString() {
-        return startingSquare + endSquare + (this.promotion != null ? this.promotion : "");
+        return startingSquare.name() + endSquare.name() + (this.promotion != null ? this.promotion : "");
     }
 }

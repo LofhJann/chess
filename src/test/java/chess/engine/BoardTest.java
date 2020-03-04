@@ -75,7 +75,7 @@ public class BoardTest {
     @Test
     @Ignore
     public void testUpdateBoardAfterMoveWorksForAMove() {
-        board.updateBoardAfterMove(new Move("b2", "b3"));
+        board.updateBoardAfterMove(new Move(Square.B2, Square.B3));
 
         assertEquals("Starting square was not correctly cleared", '\u0000', board.getBoardState()[Square.B2.getIntValue()]);
         assertEquals("Ending square was not correctly set", 'p', board.getBoardState()[Square.B3.getIntValue()]);

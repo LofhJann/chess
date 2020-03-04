@@ -14,6 +14,12 @@ public class MoveGenerator {
     public static ArrayList<Move> generateLegalMoves(Board board, Color currentPlayer) {
 
         // TODO: fix me
+        ArrayList<Move> pseudoLegalMoves = generatePseudoLegalMoves(board, currentPlayer);
+
+        for (Move move : pseudoLegalMoves) {
+
+        }
+
         return generatePseudoLegalMoves(board, currentPlayer);
     }
 
@@ -49,7 +55,9 @@ public class MoveGenerator {
     }
 
     private static void addMove(ArrayList<Move> moves, int startingSquare, int targetSquare) {
-        moves.add(new Move(Square.getString(startingSquare), Square.getString(targetSquare)));
+        moves.add(
+                new Move(Enum.valueOf(Square.class, Square.getString(startingSquare)),
+                        Enum.valueOf(Square.class, Square.getString(targetSquare))));
     }
 
     private static ArrayList<Piece> getPieceList(Board board, Color color) {
