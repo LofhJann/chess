@@ -156,14 +156,14 @@ public class Board {
         return (square.toLowerCase().charAt(0) - 97) + (Integer.parseInt("" + square.charAt(1)) - 1) * 16;
     }
 
-    public char getSquareContents(int squareIndex) throws IllegalSquareIndexException {
+    public char getSquareContents(int squareIndex) {
         if (squareIndex > boardState.length - 1 || squareIndex < 0) {
             throw new IllegalSquareIndexException();
         }
         return boardState[squareIndex];
     }
 
-    public boolean squareIsEmpty(int squareIndex) throws IllegalSquareIndexException {
+    public boolean squareIsEmpty(int squareIndex) {
         if (squareIndex > boardState.length - 1 || squareIndex < 0) {
             throw new IllegalSquareIndexException();
         }
@@ -171,7 +171,7 @@ public class Board {
         return boardState[squareIndex] == '\u0000';
     }
 
-    public Color getSquarePieceColor(int squareIndex) throws IllegalSquareIndexException {
+    public Color getSquarePieceColor(int squareIndex) {
         if (squareIndex > boardState.length - 1 || squareIndex < 0) {
             throw new IllegalSquareIndexException();
         }
