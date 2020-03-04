@@ -4,7 +4,8 @@
 package chess;
 
 import chess.bot.ChessBot;
-import chess.bot.MyBot;
+import chess.bot.MyDefaultLibraryBot;
+import chess.bot.TestBot;
 import chess.connection.LichessAPI;
 import chess.connection.XBoardHandler;
 import chess.model.Profile;
@@ -36,7 +37,7 @@ public class App {
         You need to place your bot implementation to the variable below.
         Make sure it implements the interface ChessBot, and don't change the variable name!
         */
-        ChessBot bot = new MyBot(); // Your bot here!
+        ChessBot bot = new TestBot(); // Your bot here!
 
         if (isLichess) {
             if (token == null) {

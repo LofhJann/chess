@@ -1,20 +1,20 @@
 package chess.engine;
 
-import chess.bot.MyBot;
-import org.junit.Ignore;
+import chess.bot.MyDefaultLibraryBot;
 import org.junit.Test;
 
 import static chess.model.Testdata.gameStateFullJson;
 
-public class MyBotTest {
+@Deprecated
+public class MyDefaultLibraryBotTest {
 
     //TODO: Add some real tests.
 
     @Test
     public void testNextMove() {
         GameState gameState = GameState.parseFromJson(gameStateFullJson);
-        MyBot myBot = new MyBot();
+        MyDefaultLibraryBot myDefaultLibraryBot = new MyDefaultLibraryBot();
 
-        myBot.nextMove(gameState);
+        myDefaultLibraryBot.nextMove(gameState);
     }
 }

@@ -11,10 +11,11 @@ import data.NegaMax;
 //TODO: Replace libraries with own implementations!
 
 
-public class MyBot implements ChessBot {
+@Deprecated
+public class MyDefaultLibraryBot implements ChessBot {
     private Board board;
 
-    public MyBot() {
+    public MyDefaultLibraryBot() {
         this.board = new Board();
     }
 
@@ -53,7 +54,8 @@ public class MyBot implements ChessBot {
 
     // TODO: Replace
     public Move getMove() throws MoveGeneratorException {
-        return new NegaMax(board).negaMax();
+        //return new NegaMax(board).negaMax();
+        return new Move(Square.A1, Square.A2);
     }
 
     // TODO: Replace with own implementation
