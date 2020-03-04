@@ -46,7 +46,12 @@ public abstract class Piece {
     }
 
     public char getPieceSymbol() {
+        if (color.equals(Color.WHITE)) {
+            return Character.toLowerCase(pieceSymbol);
+        }
+
         return pieceSymbol;
+
     }
 
     public Direction[] getMoveDirections() {
