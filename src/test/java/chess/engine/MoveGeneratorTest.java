@@ -64,4 +64,22 @@ public class MoveGeneratorTest {
 
         Assert.assertEquals(8, moves.size());
     }
+
+    @Test
+    public void piecesAreCorrectlyBlockedByOtherPieces() {
+        Board board = new Board("8/8/2PPP/2PqP/2PPP");
+
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
+
+        Assert.assertEquals(8, moves.size());
+    }
+
+    @Test
+    public void piecesAreCorrectlyBlockedByOwnPieces() {
+        Board board = new Board("8/8/2ppp/2pqp/2ppp");
+
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
+
+        Assert.assertEquals(3, moves.size());
+    }
 }
