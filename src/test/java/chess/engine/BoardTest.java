@@ -3,6 +3,7 @@ package chess.engine;
 import chess.engine.board.Board;
 import chess.engine.board.Move;
 import chess.engine.board.Square;
+import chess.engine.piece.Piece;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -81,13 +82,32 @@ public class BoardTest {
     }
 
     @Test
-    @Ignore
     public void testUpdateBoardAfterMoveWorksForAMove() {
+
+        Piece pawn = board.getWhitePieces().get(9);
+
+        assertEquals("Incorrect starting square, ignore test result", 17, pawn.getPosition());
+
         board.updateBoardAfterMove(new Move(Square.B2, Square.B3));
 
         assertEquals("Starting square was not correctly cleared", '\u0000', board.getBoardState()[Square.B2.getIntValue()]);
         assertEquals("Ending square was not correctly set", 'p', board.getBoardState()[Square.B3.getIntValue()]);
+        assertEquals("Pawns' position was not updated correctly", Square.B3.getIntValue(), pawn.getPosition());
 
+    }
+
+    @Test
+    public void testUpdateBoardAfterCapturingMove() {
+        Board board = new Board("rR");
+
+        Piece whiteRook = board.getWhitePieces().get(0);
+
+        board.updateBoardAfterMove(new Move(Square.A1, Square.B1));
+
+        assertEquals("Starting square was not correctly cleared", '\u0000', board.getBoardState()[Square.A1.getIntValue()]);
+        assertEquals("Ending square was not correctly set", 'r', board.getBoardState()[Square.B1.getIntValue()]);
+        assertEquals("Rooks position was not updated correctly", Square.B1.getIntValue(), whiteRook.getPosition());
+        assertEquals("Black piece was not removed from list correctly", 0, board.getBlackPieces().size());
     }
 
     @Test
