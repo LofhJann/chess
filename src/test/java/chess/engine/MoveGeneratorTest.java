@@ -82,4 +82,13 @@ public class MoveGeneratorTest {
 
         Assert.assertEquals(3, moves.size());
     }
+
+    @Test
+    public void pawnCapturesAreGeneratedCorrectly() {
+        Board board = new Board("8/8/1p6/P1P5");
+
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, Color.WHITE);
+
+        Assert.assertEquals(3, moves.size());
+    }
 }

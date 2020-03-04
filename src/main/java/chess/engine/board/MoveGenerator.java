@@ -50,8 +50,25 @@ public class MoveGenerator {
         // TODO: enpassant
         // TODO: Castling
 
+        generatePawnCaptures(board, moves, currentPlayer);
 
         return moves;
+    }
+
+    private static void generatePawnCaptures(Board board, ArrayList<Move> moves, Color color) {
+        for (Piece piece : getPieceList(board, color)) {
+            if (piece.getClass() == Pawn.class) {
+                int leftCaptureSquare = piece.getPosition() + Direction.NORTHWEST.intValue;
+                int rightCaptureSquare = piece.getPosition() + Direction.NORTHEAST.intValue;
+
+                if (!board.squareIsEmpty(leftCaptureSquare) && board.getSquarePieceColor(leftCaptureSquare) != color) {
+                    moves.add(new Move(Square.valueOf(Square.getString(piece.getPosition())), Square.valueOf(Square.getString(leftCaptureSquare))));
+                }
+                if (!board.squareIsEmpty(rightCaptureSquare) && board.getSquarePieceColor(rightCaptureSquare) != color) {
+                    moves.add(new Move(Square.valueOf(Square.getString(piece.getPosition())), Square.valueOf(Square.getString(rightCaptureSquare))));
+                }
+            }
+        }
     }
 
     private static void addMove(ArrayList<Move> moves, int startingSquare, int targetSquare) {
