@@ -29,8 +29,7 @@ public class MyDefaultLibraryBot implements ChessBot {
             if (myMove != null) {
                 return myMove.toString();
             }
-        } catch (MoveGeneratorException e) {
-            e.printStackTrace();
+        } catch (MoveGeneratorException ignored) {
         }
         return null;
     }

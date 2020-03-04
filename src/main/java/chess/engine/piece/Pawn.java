@@ -15,7 +15,7 @@ public class Pawn extends Piece {
             0, 0, 0, 0, 0, 0, 0, 0
     };
 
-    public static final Direction[] directions = {Direction.NORTH};
+    protected static final Direction[] directions = {Direction.NORTH};
 
     private boolean enpassant = false; // TODO: Implement, or move?
 

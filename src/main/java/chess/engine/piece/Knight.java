@@ -12,7 +12,7 @@ public class Knight extends Piece {
             -50, -40, -30, -30, -30, -30, -40, -50
     };
 
-    public static final Direction[] directions = {
+    protected static final Direction[] directions = {
             Direction.KNIGHT_EASTNORTH, Direction.KNIGHT_EASTSOUTH, Direction.KNIGHT_NORTHEAST, Direction.KNIGHT_NORTHWEST,
             Direction.KNIGHT_SOUTHEAST, Direction.KNIGHT_SOUTHWEST, Direction.KNIGHT_WESTNORTH, Direction.KNIGHT_WESTSOUTH
     };

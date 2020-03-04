@@ -13,7 +13,7 @@ public class King extends Piece {
             20, 30, 10, 0, 0, 10, 30, 20
     };
 
-    public static final Direction[] directions = {Direction.NORTH,
+    protected static final Direction[] directions = {Direction.NORTH,
             Direction.SOUTH,
             Direction.EAST,
             Direction.WEST,
