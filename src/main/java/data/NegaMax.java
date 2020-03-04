@@ -1,12 +1,10 @@
 package data;
 
-import com.github.bhlangonijr.chesslib.Board;
-import com.github.bhlangonijr.chesslib.move.Move;
-import com.github.bhlangonijr.chesslib.move.MoveGenerator;
-import com.github.bhlangonijr.chesslib.move.MoveGeneratorException;
-import com.github.bhlangonijr.chesslib.move.MoveList;
 
-// TODO: Replace imports with own once done
+import chess.engine.board.Board;
+import chess.engine.board.Move;
+import chess.engine.board.MoveGenerator;
+
 public class NegaMax {
     private static final int INITIAL_DEPTH = 4;
     private Board board;
@@ -19,13 +17,13 @@ public class NegaMax {
         this.bestMove = null;
     }
 
-    public Move negaMax() throws MoveGeneratorException {
-        MoveList moves = MoveGenerator.generateLegalMoves(board);
+    public Move negaMax() {
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, board.getPlayerInTurn());
 
         for (Move move : moves) {
-            board.doMove(move);
+            board.makeMove(move);
             int evaluationResult = -evaluateNegaMax(INITIAL_DEPTH, Integer.MIN_VALUE, Integer.MAX_VALUE);
-            board.undoMove();
+            board.unmakeMove();
 
             if (evaluationResult > max) {
                 max = evaluationResult;
@@ -37,19 +35,19 @@ public class NegaMax {
         return bestMove;
     }
 
-    public int evaluateNegaMax(int depth, int alpha, int beta) throws MoveGeneratorException {
+    private int evaluateNegaMax(int depth, int alpha, int beta) {
         if (depth == 0) {
-            return calculateValueFromFEN(board.getFen());
+            return board.evaluatePosition();
         }
 
         int bestValue = Integer.MIN_VALUE;
 
-        MoveList moves = MoveGenerator.generateLegalMoves(board);
+        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, board.getPlayerInTurn());
 
         for (Move move : moves) {
-            board.doMove(move);
+            board.makeMove(move);
             int value = -evaluateNegaMax(depth - 1, -beta, -alpha);
-            board.undoMove();
+            board.unmakeMove();
 
             if (value > bestValue) {
                 bestValue = value;
@@ -64,55 +62,5 @@ public class NegaMax {
             }
         }
         return alpha;
-    }
-
-    public int calculateValueFromFEN(String fenString) {
-        // TODO: Add square based evaluation
-        int value = 0;
-        for (int i = 0; i < fenString.length(); i++) {
-            switch (fenString.charAt(i)) {
-                case ' ':
-                    return value;
-                case 'P':
-                    value += 1;
-                    break;
-                case 'p':
-                    value -= 1;
-                    break;
-                case 'b':
-                    value -= 30;
-                    break;
-                case 'B':
-                    value += 30;
-                    break;
-                case 'N':
-                    value += 30;
-                    break;
-                case 'n':
-                    value -= 30;
-                    break;
-                case 'R':
-                    value += 50;
-                    break;
-                case 'r':
-                    value -= 50;
-                    break;
-                case 'Q':
-                    value += 90;
-                    break;
-                case 'q':
-                    value -= 90;
-                    break;
-                case 'K':
-                    value += 900;
-                    break;
-                case 'k':
-                    value -= 900;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return value;
     }
 }
