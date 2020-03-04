@@ -1,11 +1,9 @@
 package chess.engine.board;
 
-import chess.engine.piece.Color;
 import chess.engine.piece.*;
 import data.ArrayList;
-import data.Pair;
 
-import java.util.StringJoiner;
+import java.util.Stack;
 
 /**
  * Tracks current state of board
@@ -26,7 +24,11 @@ public class Board {
 
     private Color playerInTurn = Color.WHITE;
 
-    private String memorizedPosition = null;
+    public Color getPlayerInTurn() {
+        return playerInTurn;
+    }
+
+    private Stack<UnmakeMoveInfo> memorizedPositions = new Stack<>();
 
     /**
      * Create new Board with initial position given
@@ -56,8 +58,8 @@ public class Board {
     /**
      * @return Current value of position on board
      */
-    public double evaluatePosition() {
-        double sum = 0;
+    public int evaluatePosition() {
+        int sum = 0;
 
         for (Object piece : blackPieces.getData()) {
             sum += piece == null ? 0 : ((Piece) piece).getValue();
@@ -153,6 +155,7 @@ public class Board {
      */
     public void updateBoardAfterMove(Move legalMove) {
         makeMove(legalMove, true);
+        playerInTurn = playerInTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
     }
 
     private ArrayList<Piece> getOpposingPlayerPieces() {
@@ -175,36 +178,64 @@ public class Board {
         throw new IllegalStateException();
     }
 
-    public void makeMove(Move move, boolean isPermanent) {
-        // TODO: Might need better approach
-        memorizedPosition = isPermanent ? null : this.toString();
+    private void makeMove(Move move, boolean isPermanent) {
+        UnmakeMoveInfo unmakeMoveInfo = new UnmakeMoveInfo(move);
+
         Piece ownPiece = null;
 
         for (Piece piece : getOwnPieces()) {
             if (piece.getPosition() == move.getStartingSquare().getIntValue()) {
                 ownPiece = piece;
+                unmakeMoveInfo.setMovingPiece(ownPiece);
                 break;
             }
         }
 
+        ArrayList<Piece> toRemove = new ArrayList<>();
         for (Piece piece : getOpposingPlayerPieces()) {
             if (piece.getPosition() == move.getEndSquare().getIntValue()) {
-                getOpposingPlayerPieces().remove(piece);
+                toRemove.add(piece);
+                unmakeMoveInfo.setCapturedPiece(piece);
                 break;
             }
         }
+        getOpposingPlayerPieces().removeAll(toRemove);
 
         boardState[move.getStartingSquare().getIntValue()] = '\u0000';
         if (ownPiece != null) {
             ownPiece.setPosition(move.getEndSquare().getIntValue());
             boardState[move.getEndSquare().getIntValue()] = ownPiece.getPieceSymbol();
         }
+
+        if (!isPermanent) {
+            memorizedPositions.push(unmakeMoveInfo);
+        }
     }
 
-    // TODO: Slow af...
-    public void unmakeMove(Move move) {
-        setupBoardFromFEN(memorizedPosition);
-        memorizedPosition = null;
+    public void makeMove(Move move) {
+        makeMove(move, false);
+    }
+
+    public void unmakeMove() {
+        UnmakeMoveInfo unmakeMoveInfo = memorizedPositions.pop();
+
+        Move move = unmakeMoveInfo.getMove();
+
+        Piece ownPiece = unmakeMoveInfo.getMovingPiece();
+
+        int startingSquareIndex = move.getStartingSquare().getIntValue();
+        int endSquareIndex = move.getEndSquare().getIntValue();
+
+        if (unmakeMoveInfo.getCapturedPiece() != null) {
+            Piece capturedPiece = unmakeMoveInfo.getCapturedPiece();
+            boardState[endSquareIndex] = capturedPiece.getPieceSymbol();
+            getOpposingPlayerPieces().add(capturedPiece);
+        } else {
+            boardState[endSquareIndex] = '\u0000';
+        }
+
+        ownPiece.setPosition(startingSquareIndex);
+        boardState[startingSquareIndex] = ownPiece.getPieceSymbol();
     }
 
     /**
@@ -267,6 +298,10 @@ public class Board {
                 if (boardState[boardIndex] == '\u0000') {
                     emptySquareCount++;
                 } else {
+                    if (emptySquareCount > 0) {
+                        fenString.append(emptySquareCount);
+                        emptySquareCount = 0;
+                    }
                     fenString.append(boardState[boardIndex]);
                 }
             } else {
@@ -280,7 +315,7 @@ public class Board {
                 }
             }
         }
-        fenString.deleteCharAt(fenString.length()-1);
+        fenString.deleteCharAt(fenString.length() - 1);
         return fenString.toString();
     }
 }
