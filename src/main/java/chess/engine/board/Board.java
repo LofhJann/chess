@@ -24,6 +24,8 @@ public class Board {
     private ArrayList<Piece> blackPieces = new ArrayList<>();
     private ArrayList<Piece> whitePieces = new ArrayList<>();
 
+    private Color playerInTurn = Color.WHITE;
+
     private String memorizedPosition = null;
 
     /**
@@ -76,6 +78,8 @@ public class Board {
      */
     public void setupBoardFromFEN(String fenString) {
         int boardIndex = 0;
+        blackPieces = new ArrayList<>();
+        whitePieces = new ArrayList<>();
 
         for (int i = 0; i < fenString.length(); i++) {
             if (boardIndex >= 128 || Character.isWhitespace(fenString.charAt(i))) {
@@ -143,12 +147,64 @@ public class Board {
     }
 
     /**
-     * Updates state of board with move that was done
+     * Updates state of board with legal move that was done
      *
-     * @param move Last move done
+     * @param legalMove Last legal move done
      */
-    public void updateBoardAfterMove(Move move) {
-        // TODO
+    public void updateBoardAfterMove(Move legalMove) {
+        makeMove(legalMove, true);
+    }
+
+    private ArrayList<Piece> getOpposingPlayerPieces() {
+        if (playerInTurn == Color.WHITE) {
+            return blackPieces;
+        } else if (playerInTurn == Color.BLACK) {
+            return whitePieces;
+        }
+
+        throw new IllegalStateException();
+    }
+
+    private ArrayList<Piece> getOwnPieces() {
+        if (playerInTurn == Color.WHITE) {
+            return whitePieces;
+        } else if (playerInTurn == Color.BLACK) {
+            return blackPieces;
+        }
+
+        throw new IllegalStateException();
+    }
+
+    public void makeMove(Move move, boolean isPermanent) {
+        // TODO: Might need better approach
+        memorizedPosition = isPermanent ? null : this.toString();
+        Piece ownPiece = null;
+
+        for (Piece piece : getOwnPieces()) {
+            if (piece.getPosition() == move.getStartingSquare().getIntValue()) {
+                ownPiece = piece;
+                break;
+            }
+        }
+
+        for (Piece piece : getOpposingPlayerPieces()) {
+            if (piece.getPosition() == move.getEndSquare().getIntValue()) {
+                getOpposingPlayerPieces().remove(piece);
+                break;
+            }
+        }
+
+        boardState[move.getStartingSquare().getIntValue()] = '\u0000';
+        if (ownPiece != null) {
+            ownPiece.setPosition(move.getEndSquare().getIntValue());
+            boardState[move.getEndSquare().getIntValue()] = ownPiece.getPieceSymbol();
+        }
+    }
+
+    // TODO: Slow af...
+    public void unmakeMove(Move move) {
+        setupBoardFromFEN(memorizedPosition);
+        memorizedPosition = null;
     }
 
     /**
