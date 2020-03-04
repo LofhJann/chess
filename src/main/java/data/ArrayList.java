@@ -34,7 +34,14 @@ public class ArrayList<E> implements Iterable<E> {
         for (int i = 0; i < data.length; i++) {
             if (element != null && element.equals(data[i])) {
                 remove(i);
+                break;
             }
+        }
+    }
+
+    public void removeAll(ArrayList<E> list) {
+        for (int i = 0; i < list.size(); i++) {
+            remove(list.get(i));
         }
     }
 

@@ -31,6 +31,24 @@ public class ArrayListTest {
     }
 
     @Test
+    public void removeAllWorksAsExpected() {
+        ArrayList<String> arrayList = new ArrayList<>();
+        String hello = "hello";
+        String world = "world";
+
+        arrayList.add(hello);
+        arrayList.add(world);
+
+        ArrayList<String> toRemove = new ArrayList<>();
+        toRemove.add(hello);
+        toRemove.add(world);
+
+        arrayList.removeAll(toRemove);
+
+        Assert.assertEquals(0, arrayList.size());
+    }
+
+    @Test
     public void removePieceWorksAsExpected() {
         ArrayList<Piece> arrayList = new ArrayList<>();
 
