@@ -6,6 +6,7 @@
 
 ## Käyttöohjeet
 Buildaa gradle wrapperia käyttäen (.\gradlew build juuressa) tai lataa valmis .jar paketti Releases sivulta
+
 Avaa jar tiedosto UCI protokollaa tukevassa ohjelmassa
 
 XBoard:
