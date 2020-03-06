@@ -52,8 +52,7 @@ public class MyChessLibBot implements ChessBot {
 
     // TODO: Replace
     public Move getMove() throws MoveGeneratorException {
-        //return new NegaMax(board).negaMax();
-        return new Move(Square.A1, Square.A2);
+        return new NegaMax(board).negaMax();
     }
 
     // TODO: Replace with own implementation
