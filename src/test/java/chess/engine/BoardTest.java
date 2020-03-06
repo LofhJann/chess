@@ -86,7 +86,7 @@ public class BoardTest {
 
         Piece pawn = board.getWhitePieces().get(9);
 
-        assertEquals("Incorrect starting square, ignore test result", 17, pawn.getPosition());
+        assertEquals("Incorrect starting square, ignore test result", Square.B2.getIntValue(), pawn.getPosition());
 
         board.updateBoardAfterMove(new Move(Square.B2, Square.B3));
 
