@@ -15,11 +15,12 @@ public class MyOwnBot implements ChessBot {
     // TODO: Finish this
     @Override
     public String nextMove(GameState gamestate) {
-        if (!gamestate.moves.isEmpty()) {
-            board.updateBoardAfterMove(new Move(gamestate.moves.get(gamestate.moves.size() - 1)));
-        }
-        Move move = new NegaMax(board).negaMax();
-        board.updateBoardAfterMove(move);
-        return move.toString();
+//        if (!gamestate.moves.isEmpty()) {
+//            board.updateBoardAfterMove(new Move(gamestate.moves.get(gamestate.moves.size() - 1)));
+//        }
+//        Move move = new NegaMax(board).negaMax();
+//        board.updateBoardAfterMove(move);
+//        return move.toString();
+        return null;
     }
 }
