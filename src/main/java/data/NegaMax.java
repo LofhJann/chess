@@ -10,8 +10,6 @@ import com.github.bhlangonijr.chesslib.move.MoveGenerator;
 import com.github.bhlangonijr.chesslib.move.MoveGeneratorException;
 import com.github.bhlangonijr.chesslib.move.MoveList;
 
-import static com.github.bhlangonijr.chesslib.PieceType.*;
-
 public class NegaMax {
     private static final int INITIAL_DEPTH = 4;
     private Board board;
@@ -25,11 +23,15 @@ public class NegaMax {
     }
 
     public Move negaMax() throws MoveGeneratorException {
+        return negaMax(INITIAL_DEPTH);
+    }
+
+    public Move negaMax(int depth) throws MoveGeneratorException {
         MoveList moves = MoveGenerator.generateLegalMoves(board);
 
         for (Move move : moves) {
             board.doMove(move);
-            int evaluationResult = -evaluateNegaMax(INITIAL_DEPTH, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            int evaluationResult = -evaluateNegaMax(depth, Integer.MIN_VALUE, Integer.MAX_VALUE);
             board.undoMove();
 
             if (evaluationResult > max) {
@@ -82,28 +84,22 @@ public class NegaMax {
             int pieceValue = 0;
             switch (pieces[i].getPieceType()) {
                 case PAWN:
-                    pieceValue += 1;
-                    pieceValue += Pawn.EVAL_ARRAY[i];
+                    pieceValue += 10;
                     break;
                 case BISHOP:
-                    pieceValue += 30;
-                    pieceValue += Bishop.EVAL_ARRAY[i];
+                    pieceValue += 300;
                     break;
                 case KNIGHT:
-                    pieceValue += 30;
-                    pieceValue += Knight.EVAL_ARRAY[i];
+                    pieceValue += 300;
                     break;
                 case ROOK:
-                    pieceValue += 50;
-                    pieceValue += Rook.EVAL_ARRAY[i];
+                    pieceValue += 500;
                     break;
                 case QUEEN:
-                    pieceValue += 90;
-                    pieceValue += Queen.EVAL_ARRAY[i];
+                    pieceValue += 900;
                     break;
                 case KING:
-                    pieceValue += 900;
-                    pieceValue += King.EVAL_ARRAY[i];
+                    pieceValue += 9000;
                     break;
                 case NONE:
                     continue;

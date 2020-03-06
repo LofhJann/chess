@@ -4,6 +4,7 @@ import chess.engine.board.Board;
 import chess.engine.board.Move;
 import chess.engine.board.Square;
 import chess.engine.piece.Piece;
+import data.ArrayList;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -77,8 +78,7 @@ public class BoardTest {
         assertEquals(Square.A1.getIntValue(), board.squareToBoardIndex("a1"));
         assertEquals(Square.H8.getIntValue(), board.squareToBoardIndex("h8"));
         assertEquals(Square.B6.getIntValue(), board.squareToBoardIndex("b6"));
-        assertEquals("Uppercase was not handled correctly",
-                Square.B6.getIntValue(), board.squareToBoardIndex("B6"));
+        assertEquals("Uppercase was not handled correctly", Square.B6.getIntValue(), board.squareToBoardIndex("B6"));
     }
 
     @Test
@@ -108,6 +108,25 @@ public class BoardTest {
         assertEquals("Ending square was not correctly set", 'r', board.getBoardState()[Square.B1.getIntValue()]);
         assertEquals("Rooks position was not updated correctly", Square.B1.getIntValue(), whiteRook.getPosition());
         assertEquals("Black piece was not removed from list correctly", 0, board.getBlackPieces().size());
+    }
+
+    @Test
+    public void unmakeWorks() {
+        Board board = new Board("rR");
+
+        Piece whitePiece = board.getWhitePieces().get(0);
+        Piece blackPiece = board.getBlackPieces().get(0);
+
+
+        board.makeMove(new Move(Square.A1, Square.B1));
+        board.unmakeMove();
+
+        assertEquals(whitePiece, board.getWhitePieces().get(0));
+        assertEquals(blackPiece, board.getBlackPieces().get(0));
+
+
+        assertEquals('r', board.getBoardState()[Square.A1.getIntValue()]);
+        assertEquals('R', board.getBoardState()[Square.B1.getIntValue()]);
     }
 
     @Test

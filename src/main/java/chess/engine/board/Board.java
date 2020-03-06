@@ -210,6 +210,8 @@ public class Board {
         if (!isPermanent) {
             memorizedPositions.push(unmakeMoveInfo);
         }
+
+        playerInTurn = playerInTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
     }
 
     public void makeMove(Move move) {
@@ -217,6 +219,8 @@ public class Board {
     }
 
     public void unmakeMove() {
+        playerInTurn = playerInTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
+
         UnmakeMoveInfo unmakeMoveInfo = memorizedPositions.pop();
 
         Move move = unmakeMoveInfo.getMove();
@@ -236,6 +240,7 @@ public class Board {
 
         ownPiece.setPosition(startingSquareIndex);
         boardState[startingSquareIndex] = ownPiece.getPieceSymbol();
+
     }
 
     /**

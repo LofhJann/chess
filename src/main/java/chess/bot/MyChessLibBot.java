@@ -4,9 +4,16 @@ import chess.engine.GameState;
 import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.Piece;
 import com.github.bhlangonijr.chesslib.Square;
+import com.github.bhlangonijr.chesslib.game.GameContext;
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveGeneratorException;
 import data.NegaMax;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 //TODO: Replace libraries with own implementations!
 
@@ -22,6 +29,13 @@ public class MyChessLibBot implements ChessBot {
     public String nextMove(GameState gamestate) {
         parseLatestMove(gamestate);
         Move myMove;
+        if (countPieces() <= 7) {
+            try {
+                return getMoveFromEndgameTables();
+            } catch (IOException ignored) {
+            } catch (InterruptedException ignored) {
+            }
+        }
         try {
             myMove = this.getMove();
 
@@ -31,6 +45,40 @@ public class MyChessLibBot implements ChessBot {
         } catch (MoveGeneratorException ignored) {
         }
         return null;
+    }
+
+    private int countPieces() {
+        int count = 0;
+        for (Piece piece : board.boardToArray()) {
+            if (piece != Piece.NONE) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public String getMoveFromEndgameTables() throws IOException, InterruptedException {
+        String fen = board.getFen();
+        fen = fen.replace(" ", "_");
+        URL url = new URL("http://tablebase.lichess.ovh/standard/mainline?fen=" + fen);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "text/plain");
+        con.setRequestProperty("charset", "utf-8");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuilder content = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+        con.disconnect();
+
+        String[] contentArray = content.toString().split("uci");
+
+
+        return contentArray[1].split("\"")[2];
     }
 
     // TODO: Replace with own implementation
@@ -50,7 +98,6 @@ public class MyChessLibBot implements ChessBot {
         }
     }
 
-    // TODO: Replace
     public Move getMove() throws MoveGeneratorException {
         return new NegaMax(board).negaMax();
     }

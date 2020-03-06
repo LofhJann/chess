@@ -38,6 +38,7 @@ public class MoveGenerator {
                         }
                         break;
                     }
+
                     if (piece.isPseudoLegalMove(targetSquare, direction)) {
                         addMove(moves, startingSquare, targetSquare);
                     }
@@ -72,9 +73,11 @@ public class MoveGenerator {
         }
     }
 
-    private static void addPawnCaptureIfPseudoLegal(Board board, ArrayList<Move> moves, Color color, Piece piece, int leftCaptureSquare) {
-        if (!board.squareIsEmpty(leftCaptureSquare) && board.getSquarePieceColor(leftCaptureSquare) != color) {
-            moves.add(new Move(Square.valueOf(Square.getString(piece.getPosition())), Square.valueOf(Square.getString(leftCaptureSquare))));
+    private static void addPawnCaptureIfPseudoLegal(Board board, ArrayList<Move> moves, Color color, Piece piece, int captureSquare) {
+        if (targetIsLegalSquare(captureSquare) &&
+                !board.squareIsEmpty(captureSquare)
+                && board.getSquarePieceColor(captureSquare) != color) {
+            moves.add(new Move(Square.valueOf(Square.getString(piece.getPosition())), Square.valueOf(Square.getString(captureSquare))));
         }
     }
 
