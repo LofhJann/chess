@@ -12,8 +12,8 @@ public class Move {
     }
 
     public Move(String moveString) {
-        this.startingSquare = Square.valueOf(moveString.substring(0, 2).toLowerCase());
-        this.endSquare = Square.valueOf(moveString.substring(2, 4).toLowerCase());
+        this.startingSquare = Square.valueOf(moveString.substring(0, 2));
+        this.endSquare = Square.valueOf(moveString.substring(2, 4));
         this.promotion = moveString.substring(4).toLowerCase();
     }
 
@@ -45,6 +45,6 @@ public class Move {
      */
     @Override
     public String toString() {
-        return startingSquare.name() + endSquare.name() + (this.promotion != null ? this.promotion : "");
+        return (startingSquare.name() + endSquare.name() + (this.promotion != null ? this.promotion : "")).toLowerCase();
     }
 }
