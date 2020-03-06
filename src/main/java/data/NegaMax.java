@@ -1,9 +1,16 @@
 package data;
 
 
-import chess.engine.board.Board;
-import chess.engine.board.Move;
-import chess.engine.board.MoveGenerator;
+import chess.engine.piece.*;
+import com.github.bhlangonijr.chesslib.Board;
+import com.github.bhlangonijr.chesslib.Piece;
+import com.github.bhlangonijr.chesslib.Side;
+import com.github.bhlangonijr.chesslib.move.Move;
+import com.github.bhlangonijr.chesslib.move.MoveGenerator;
+import com.github.bhlangonijr.chesslib.move.MoveGeneratorException;
+import com.github.bhlangonijr.chesslib.move.MoveList;
+
+import static com.github.bhlangonijr.chesslib.PieceType.*;
 
 public class NegaMax {
     private static final int INITIAL_DEPTH = 4;
@@ -17,13 +24,13 @@ public class NegaMax {
         this.bestMove = null;
     }
 
-    public Move negaMax() {
-        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, board.getPlayerInTurn());
+    public Move negaMax() throws MoveGeneratorException {
+        MoveList moves = MoveGenerator.generateLegalMoves(board);
 
         for (Move move : moves) {
-            board.makeMove(move);
+            board.doMove(move);
             int evaluationResult = -evaluateNegaMax(INITIAL_DEPTH, Integer.MIN_VALUE, Integer.MAX_VALUE);
-            board.unmakeMove();
+            board.undoMove();
 
             if (evaluationResult > max) {
                 max = evaluationResult;
@@ -35,19 +42,19 @@ public class NegaMax {
         return bestMove;
     }
 
-    private int evaluateNegaMax(int depth, int alpha, int beta) {
+    private int evaluateNegaMax(int depth, int alpha, int beta) throws MoveGeneratorException {
         if (depth == 0) {
-            return board.evaluatePosition();
+            return evaluatePosition();
         }
 
         int bestValue = Integer.MIN_VALUE;
 
-        ArrayList<Move> moves = MoveGenerator.generateLegalMoves(board, board.getPlayerInTurn());
+        MoveList moves = MoveGenerator.generateLegalMoves(board);
 
         for (Move move : moves) {
-            board.makeMove(move);
+            board.doMove(move);
             int value = -evaluateNegaMax(depth - 1, -beta, -alpha);
-            board.unmakeMove();
+            board.undoMove();
 
             if (value > bestValue) {
                 bestValue = value;
@@ -62,5 +69,53 @@ public class NegaMax {
             }
         }
         return alpha;
+    }
+
+    private int evaluatePosition() {
+        int value = 0;
+        Piece[] pieces = board.boardToArray();
+        for (int i = 0; i < pieces.length; i++) {
+            if (pieces[i] == Piece.NONE) {
+                continue;
+            }
+            Side pieceSide = pieces[i].getPieceSide();
+            int pieceValue = 0;
+            switch (pieces[i].getPieceType()) {
+                case PAWN:
+                    pieceValue += 1;
+                    pieceValue += Pawn.EVAL_ARRAY[i];
+                    break;
+                case BISHOP:
+                    pieceValue += 30;
+                    pieceValue += Bishop.EVAL_ARRAY[i];
+                    break;
+                case KNIGHT:
+                    pieceValue += 30;
+                    pieceValue += Knight.EVAL_ARRAY[i];
+                    break;
+                case ROOK:
+                    pieceValue += 50;
+                    pieceValue += Rook.EVAL_ARRAY[i];
+                    break;
+                case QUEEN:
+                    pieceValue += 90;
+                    pieceValue += Queen.EVAL_ARRAY[i];
+                    break;
+                case KING:
+                    pieceValue += 900;
+                    pieceValue += King.EVAL_ARRAY[i];
+                    break;
+                case NONE:
+                    continue;
+                default:
+                    break;
+            }
+            if (pieceSide == Side.BLACK) {
+                pieceValue *= -1;
+            }
+            value += pieceValue;
+        }
+
+        return value;
     }
 }
