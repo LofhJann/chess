@@ -4,7 +4,19 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=LofhJann_chess&metric=coverage)](https://sonarcloud.io/dashboard?id=LofhJann_chess)
 
 
-Tiran harjoitustyö annetun pohjan avulla
+## Käyttöohjeet
+Buildaa gradle wrapperia käyttäen (.\gradlew build juuressa)
+Avaa jar tiedosto UCI protokollaa tukevassa ohjelmassa
+
+XBoard:
+
+Engine -> Edit Engine List
+
+uudelle riville "tira-chess" -fcp "java -jar \<polku> chess/build/libs/chess-all.jar"
+
+Commit Changes -> OK
+
+Engine -> Load new 1st Engine -> tira-chess -> OK
 
 ## Määrittelydokumentti
 
