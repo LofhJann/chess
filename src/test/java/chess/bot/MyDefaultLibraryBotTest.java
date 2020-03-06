@@ -1,6 +1,7 @@
-package chess.engine;
+package chess.bot;
 
 import chess.bot.MyDefaultLibraryBot;
+import chess.engine.GameState;
 import org.junit.Test;
 
 import static chess.model.Testdata.gameStateFullJson;

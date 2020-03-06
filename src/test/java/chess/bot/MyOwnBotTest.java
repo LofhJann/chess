@@ -1,6 +1,7 @@
-package chess.engine;
+package chess.bot;
 
 import chess.bot.MyOwnBot;
+import chess.engine.GameState;
 import org.junit.Test;
 
 public class MyOwnBotTest {
