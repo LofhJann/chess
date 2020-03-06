@@ -11,11 +11,10 @@ import data.NegaMax;
 //TODO: Replace libraries with own implementations!
 
 
-@Deprecated
-public class MyDefaultLibraryBot implements ChessBot {
+public class MyChessLibBot implements ChessBot {
     private Board board;
 
-    public MyDefaultLibraryBot() {
+    public MyChessLibBot() {
         this.board = new Board();
     }
 
