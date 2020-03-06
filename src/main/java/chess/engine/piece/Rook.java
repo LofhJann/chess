@@ -12,7 +12,7 @@ public class Rook extends Piece {
             0, 0, 0, 5, 5, 0, 0, 0
     };
 
-    protected static final Direction[] directions = {Direction.NORTH,
+    private static final Direction[] directions = {Direction.NORTH,
             Direction.SOUTH,
             Direction.EAST,
             Direction.WEST

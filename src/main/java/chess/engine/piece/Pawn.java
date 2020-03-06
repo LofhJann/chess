@@ -15,7 +15,7 @@ public class Pawn extends Piece {
             0, 0, 0, 0, 0, 0, 0, 0
     };
 
-    protected static final Direction[] directions = {Direction.NORTH};
+    private static final Direction[] directions = new Direction[1];
 
     private boolean enpassant = false; // TODO: Implement, or move?
 
@@ -25,6 +25,11 @@ public class Pawn extends Piece {
 
     public Pawn(Color color, int position) {
         super('P', directions, color, 10, position);
+        if (color == Color.WHITE) {
+            directions[0] = Direction.NORTH;
+        } else {
+            directions[0] = Direction.SOUTH;
+        }
     }
 
     public boolean isFirstMove() {
@@ -34,8 +39,13 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isPseudoLegalMove(int targetSquare) {
-        return (targetSquare == getPosition() + Direction.NORTH.intValue)
-                || (isFirstMove() && targetSquare == getPosition() + Direction.NORTH.intValue * 2);
+        if (getColor() == Color.WHITE) {
+            return (targetSquare == getPosition() + Direction.NORTH.intValue)
+                    || (isFirstMove() && targetSquare == getPosition() + Direction.NORTH.intValue * 2);
+        } else {
+            return (targetSquare == getPosition() + Direction.SOUTH.intValue)
+                    || (isFirstMove() && targetSquare == getPosition() + Direction.SOUTH.intValue * 2);
+        }
     }
 
     @Override
@@ -43,4 +53,8 @@ public class Pawn extends Piece {
         return isPseudoLegalMove(targetSquare);
     }
 
+    @Override
+    public Direction[] getMoveDirections() {
+        return getColor() == Color.WHITE ? new Direction[]{Direction.NORTH} : new Direction[]{Direction.SOUTH};
+    }
 }
