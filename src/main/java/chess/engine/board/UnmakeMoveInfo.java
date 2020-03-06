@@ -7,6 +7,7 @@ public class UnmakeMoveInfo {
     private Piece movingPiece;
     private Piece capturedPiece;
     private Move move;
+    private Piece promotedPiece;
 
     public UnmakeMoveInfo(Move move) {
         this.move = move;
@@ -32,7 +33,11 @@ public class UnmakeMoveInfo {
         return move;
     }
 
-    public void setMove(Move move) {
-        this.move = move;
+    public Piece getPromotedPiece() {
+        return promotedPiece;
+    }
+
+    public void setPromotedPiece(Piece promotedPiece) {
+        this.promotedPiece = promotedPiece;
     }
 }
