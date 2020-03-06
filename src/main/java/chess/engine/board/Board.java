@@ -105,6 +105,11 @@ public class Board {
         }
     }
 
+    /**
+     * Add piece to list with board index given
+     * @param pieceSymbol Symbol of piece
+     * @param boardIndex Position on board
+     */
     private void addPieceToList(char pieceSymbol, int boardIndex) {
         switch (pieceSymbol) {
             case 'P':
@@ -158,6 +163,9 @@ public class Board {
         playerInTurn = playerInTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
     }
 
+    /**
+     * @return ArrayList of pieces of player currently not in turn
+     */
     private ArrayList<Piece> getOpposingPlayerPieces() {
         if (playerInTurn == Color.WHITE) {
             return blackPieces;
@@ -168,6 +176,9 @@ public class Board {
         throw new IllegalStateException();
     }
 
+    /**
+     * @return ArrayList of pieces of player currently in turn
+     */
     private ArrayList<Piece> getOwnPieces() {
         if (playerInTurn == Color.WHITE) {
             return whitePieces;
@@ -178,6 +189,11 @@ public class Board {
         throw new IllegalStateException();
     }
 
+    /**
+     * Make move on board
+     * @param move Move to make
+     * @param isPermanent Used to determine if UnMakeMoveInfo should be saved in History
+     */
     private void makeMove(Move move, boolean isPermanent) {
         UnmakeMoveInfo unmakeMoveInfo = new UnmakeMoveInfo(move);
 
@@ -214,10 +230,17 @@ public class Board {
         playerInTurn = playerInTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
     }
 
+    /**
+     * Make move that is not permanent
+     * @param move Move to make
+     */
     public void makeMove(Move move) {
         makeMove(move, false);
     }
 
+    /**
+     * Restore previous move from history
+     */
     public void unmakeMove() {
         playerInTurn = playerInTurn == Color.WHITE ? Color.BLACK : Color.WHITE;
 
@@ -253,6 +276,11 @@ public class Board {
         return (square.toLowerCase().charAt(0) - 97) + (Integer.parseInt("" + square.charAt(1)) - 1) * 16;
     }
 
+    /**
+     * Get piece symbol of piece in square
+     * @param squareIndex Index of square
+     * @return Symbol of piece in square
+     */
     public char getSquareContents(int squareIndex) {
         if (squareIndex > boardState.length - 1 || squareIndex < 0) {
             throw new IllegalSquareIndexException();
@@ -260,6 +288,11 @@ public class Board {
         return boardState[squareIndex];
     }
 
+    /**
+     *
+     * @param squareIndex Index of square
+     * @return Boolean whether parameter square is empty or not
+     */
     public boolean squareIsEmpty(int squareIndex) {
         if (squareIndex > boardState.length - 1 || squareIndex < 0) {
             throw new IllegalSquareIndexException();
@@ -268,6 +301,11 @@ public class Board {
         return boardState[squareIndex] == '\u0000';
     }
 
+    /**
+     * Get color of piece on square
+     * @param squareIndex Index of square on board
+     * @return Color of piece on parameter square
+     */
     public Color getSquarePieceColor(int squareIndex) {
         if (squareIndex > boardState.length - 1 || squareIndex < 0) {
             throw new IllegalSquareIndexException();
@@ -293,6 +331,9 @@ public class Board {
         return whitePieces;
     }
 
+    /**
+     * @return FEN formatted String of current position on Board
+     */
     @Override
     public String toString() {
         StringBuilder fenString = new StringBuilder();

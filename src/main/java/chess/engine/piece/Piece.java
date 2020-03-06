@@ -26,6 +26,11 @@ public abstract class Piece {
         this.position = position;
     }
 
+    /**
+     * Checks if in theory Piece could move in given square
+     * @param targetSquare square to move to
+     * @return Boolean if move is possible, given it's not blocked by other pieces
+     */
     public boolean isPseudoLegalMove(int targetSquare) {
         if (targetSquare <= Square.A1.getIntValue() || targetSquare >= Square.H8.getIntValue() || (targetSquare & 0x88) != 0) {
             return false;

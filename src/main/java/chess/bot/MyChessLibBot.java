@@ -4,7 +4,6 @@ import chess.engine.GameState;
 import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.Piece;
 import com.github.bhlangonijr.chesslib.Square;
-import com.github.bhlangonijr.chesslib.game.GameContext;
 import com.github.bhlangonijr.chesslib.move.Move;
 import com.github.bhlangonijr.chesslib.move.MoveGeneratorException;
 import data.NegaMax;
@@ -33,7 +32,6 @@ public class MyChessLibBot implements ChessBot {
             try {
                 return getMoveFromEndgameTables();
             } catch (IOException ignored) {
-            } catch (InterruptedException ignored) {
             }
         }
         try {
@@ -57,7 +55,7 @@ public class MyChessLibBot implements ChessBot {
         return count;
     }
 
-    public String getMoveFromEndgameTables() throws IOException, InterruptedException {
+    public String getMoveFromEndgameTables() throws IOException {
         String fen = board.getFen();
         fen = fen.replace(" ", "_");
         URL url = new URL("http://tablebase.lichess.ovh/standard/mainline?fen=" + fen);

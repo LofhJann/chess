@@ -1,6 +1,9 @@
 package chess.engine.piece;
 
 public class Queen extends Piece {
+    /**
+     * Array for position based evaluation for piece
+     */
     public static final int[] EVAL_ARRAY = {
             -20, -10, -10, -5, -5, -10, -10, -20,
             -10, 0, 0, 0, 0, 0, 0, -10,
@@ -12,6 +15,9 @@ public class Queen extends Piece {
             -20, -10, -10, -5, -5, -10, -10, -20
     };
 
+    /**
+     * Directions where Piece can move
+     */
     private static final Direction[] directions = {Direction.NORTH,
             Direction.SOUTH,
             Direction.EAST,

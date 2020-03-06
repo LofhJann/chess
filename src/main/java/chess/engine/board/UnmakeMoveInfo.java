@@ -2,6 +2,9 @@ package chess.engine.board;
 
 import chess.engine.piece.Piece;
 
+/**
+ * UnmakeMoveInfo is used to unmake moves and contains various information of board state before move
+ */
 public class UnmakeMoveInfo {
 
     private Piece movingPiece;

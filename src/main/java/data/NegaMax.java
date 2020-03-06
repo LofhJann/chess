@@ -22,10 +22,21 @@ public class NegaMax {
         this.bestMove = null;
     }
 
+    /**
+     * Entrance point to NegaMax algorithm used to search for best move.
+     * @return Best move available
+     * @throws MoveGeneratorException
+     */
     public Move negaMax() throws MoveGeneratorException {
         return negaMax(INITIAL_DEPTH);
     }
 
+    /**
+     * Additional entrance point if non-initial depth is wanted.
+     * @param depth depth to use in recursive search
+     * @return Best move available
+     * @throws MoveGeneratorException
+     */
     public Move negaMax(int depth) throws MoveGeneratorException {
         MoveList moves = MoveGenerator.generateLegalMoves(board);
 
@@ -44,6 +55,14 @@ public class NegaMax {
         return bestMove;
     }
 
+    /**
+     * Recursion step of NegaMax algorithm
+     * @param depth depth
+     * @param alpha Alpha for alpha beta pruning
+     * @param beta Beta for alpha beta pruning
+     * @return Evaluation of position in end of search-tree
+     * @throws MoveGeneratorException
+     */
     private int evaluateNegaMax(int depth, int alpha, int beta) throws MoveGeneratorException {
         if (depth == 0) {
             return evaluatePosition();
@@ -73,6 +92,10 @@ public class NegaMax {
         return alpha;
     }
 
+    /**
+     *
+     * @return Evaluation of current position
+     */
     private int evaluatePosition() {
         int value = 0;
         Piece[] pieces = board.boardToArray();

@@ -2,6 +2,10 @@ package chess.engine.piece;
 
 // TODO: Implement castling
 public class King extends Piece {
+
+    /**
+     * Array for position based evaluation for piece
+     */
     public static final int[] EVAL_ARRAY = {
             -30, -40, -40, -50, -50, -40, -40, -30,
             -30, -40, -40, -50, -50, -40, -40, -30,
@@ -13,6 +17,9 @@ public class King extends Piece {
             20, 30, 10, 0, 0, 10, 30, 20
     };
 
+    /**
+     * Directions where Piece can move
+     */
     private static final Direction[] directions = {Direction.NORTH,
             Direction.SOUTH,
             Direction.EAST,
@@ -31,6 +38,12 @@ public class King extends Piece {
         super('K', directions, color, 900, position);
     }
 
+
+    /**
+     * Checks if in theory Piece could move in given square
+     * @param targetSquare square to move to
+     * @return Boolean if move is possible, given it's not blocked by other pieces
+     */
     @Override
     public boolean isPseudoLegalMove(int targetSquare) {
         for (Direction direction : getMoveDirections()) {

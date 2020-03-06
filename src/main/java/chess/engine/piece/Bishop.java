@@ -1,6 +1,10 @@
 package chess.engine.piece;
 
 public class Bishop extends Piece {
+
+    /**
+     * Array for position based evaluation for piece
+     */
     public static final int[] EVAL_ARRAY = {
             -20, -10, -10, -10, -10, -10, -10, -20,
             -10, 0, 0, 0, 0, 0, 0, -10,
@@ -11,6 +15,9 @@ public class Bishop extends Piece {
             -10, 5, 0, 0, 0, 0, 5, -10,
             -20, -10, -10, -10, -10, -10, -10, -20};
 
+    /**
+     * Directions where Piece can move
+     */
     private static final Direction[] directions = {Direction.NORTHEAST, Direction.NORTHWEST, Direction.SOUTHEAST, Direction.SOUTHWEST};
 
     public Bishop(Color color) {
