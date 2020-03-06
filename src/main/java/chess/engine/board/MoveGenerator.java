@@ -23,17 +23,14 @@ public class MoveGenerator {
         return generatePseudoLegalMoves(board, currentPlayer);
     }
 
-    private static ArrayList<Move> generatePseudoLegalMoves(Board board, Color currentPlayer) {
+    protected static ArrayList<Move> generatePseudoLegalMoves(Board board, Color currentPlayer) {
         ArrayList<Move> moves = new ArrayList<>();
 
         for (Piece piece : getPieceList(board, currentPlayer)) {
             int startingSquare = piece.getPosition();
             for (Direction direction : piece.getMoveDirections()) {
 
-                for (int targetSquare = startingSquare + direction.intValue;
-                     targetSquare >= Square.A1.getIntValue() && targetSquare <= Square.H8.getIntValue() && (targetSquare & 0x88) == 0;
-                     targetSquare += direction.intValue) {
-
+                for (int targetSquare = startingSquare + direction.intValue; targetIsLegalSquare(targetSquare); targetSquare += direction.intValue) {
 
                     if (!board.squareIsEmpty(targetSquare)) {
                         if (board.getSquarePieceColor(targetSquare) != currentPlayer && piece.getClass() != Pawn.class) {
@@ -55,19 +52,29 @@ public class MoveGenerator {
         return moves;
     }
 
+    private static boolean targetIsLegalSquare(int targetSquare) {
+        return targetSquare >= Square.A1.getIntValue() && targetSquare <= Square.H8.getIntValue() && (targetSquare & 0x88) == 0;
+    }
+
     private static void generatePawnCaptures(Board board, ArrayList<Move> moves, Color color) {
         for (Piece piece : getPieceList(board, color)) {
             if (piece.getClass() == Pawn.class) {
-                int leftCaptureSquare = piece.getPosition() + Direction.NORTHWEST.intValue;
-                int rightCaptureSquare = piece.getPosition() + Direction.NORTHEAST.intValue;
+                int leftCaptureSquare = color == Color.WHITE
+                        ? piece.getPosition() + Direction.NORTHWEST.intValue
+                        : piece.getPosition() + Direction.SOUTHWEST.intValue;
+                int rightCaptureSquare = color == Color.WHITE
+                        ? piece.getPosition() + Direction.NORTHEAST.intValue
+                        : piece.getPosition() + Direction.SOUTHEAST.intValue;
 
-                if (!board.squareIsEmpty(leftCaptureSquare) && board.getSquarePieceColor(leftCaptureSquare) != color) {
-                    moves.add(new Move(Square.valueOf(Square.getString(piece.getPosition())), Square.valueOf(Square.getString(leftCaptureSquare))));
-                }
-                if (!board.squareIsEmpty(rightCaptureSquare) && board.getSquarePieceColor(rightCaptureSquare) != color) {
-                    moves.add(new Move(Square.valueOf(Square.getString(piece.getPosition())), Square.valueOf(Square.getString(rightCaptureSquare))));
-                }
+                addPawnCaptureIfPseudoLegal(board, moves, color, piece, leftCaptureSquare);
+                addPawnCaptureIfPseudoLegal(board, moves, color, piece, rightCaptureSquare);
             }
+        }
+    }
+
+    private static void addPawnCaptureIfPseudoLegal(Board board, ArrayList<Move> moves, Color color, Piece piece, int leftCaptureSquare) {
+        if (!board.squareIsEmpty(leftCaptureSquare) && board.getSquarePieceColor(leftCaptureSquare) != color) {
+            moves.add(new Move(Square.valueOf(Square.getString(piece.getPosition())), Square.valueOf(Square.getString(leftCaptureSquare))));
         }
     }
 
