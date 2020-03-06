@@ -13,3 +13,6 @@ https://github.com/LofhJann/chess/blob/master/documentation/M%C3%A4%C3%A4rittely
 ## Viikkoraportit
 
 Viikko 4: https://github.com/LofhJann/chess/blob/master/documentation/viikkoraportit/viikko4.md
+
+## Parannettavaa / Puutteita
+https://github.com/LofhJann/chess/blob/master/documentation/puutteet.md
