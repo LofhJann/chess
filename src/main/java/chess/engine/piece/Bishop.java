@@ -1,7 +1,7 @@
 package chess.engine.piece;
 
 public class Bishop extends Piece {
-    private static final int[] EVAL_ARRAY = {
+    public static final int[] EVAL_ARRAY = {
             -20, -10, -10, -10, -10, -10, -10, -20,
             -10, 0, 0, 0, 0, 0, 0, -10,
             -10, 0, 5, 10, 10, 5, 0, -10,

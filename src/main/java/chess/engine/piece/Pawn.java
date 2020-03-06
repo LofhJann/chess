@@ -4,7 +4,7 @@ import chess.engine.board.Square;
 
 public class Pawn extends Piece {
 
-    private static final int[] EVAL_ARRAY = {
+    public static final int[] EVAL_ARRAY = {
             0, 0, 0, 0, 0, 0, 0, 0,
             50, 50, 50, 50, 50, 50, 50, 50,
             10, 10, 20, 30, 30, 20, 10, 10,
