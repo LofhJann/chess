@@ -5,14 +5,14 @@
 
 
 ## Käyttöohjeet
-Buildaa gradle wrapperia käyttäen (.\gradlew build juuressa)
+Buildaa gradle wrapperia käyttäen (.\gradlew build juuressa) tai lataa valmis .jar paketti Releases sivulta
 Avaa jar tiedosto UCI protokollaa tukevassa ohjelmassa
 
 XBoard:
 
 Engine -> Edit Engine List
 
-uudelle riville "tira-chess" -fcp "java -jar \<polku> chess/build/libs/chess-all.jar"
+uudelle riville "tira-chess" -fcp "java -jar \<polku>/chess-all.jar"
 
 Commit Changes -> OK
 
