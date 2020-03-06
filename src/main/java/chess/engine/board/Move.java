@@ -12,9 +12,9 @@ public class Move {
     }
 
     public Move(String moveString) {
-        this.startingSquare = Square.valueOf(moveString.substring(0, 2));
-        this.endSquare = Square.valueOf(moveString.substring(2, 4));
-        this.promotion = moveString.substring(4);
+        this.startingSquare = Square.valueOf(moveString.substring(0, 2).toLowerCase());
+        this.endSquare = Square.valueOf(moveString.substring(2, 4).toLowerCase());
+        this.promotion = moveString.substring(4).toLowerCase();
     }
 
     public Move(Square startingSquare, Square endSquare, String promotion) {
